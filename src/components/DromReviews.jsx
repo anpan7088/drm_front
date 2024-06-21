@@ -2,7 +2,6 @@ import { ListGroup, Button } from 'react-bootstrap';
 import { useLoginContext } from '../context/loginContext';
 import { useMemo, useState } from 'react';
 import axiosInstance from '../axiosConfig';
-import WriteReview from './WriteReview';
 import PropTypes from 'prop-types';
 
 const DormReviews = ({ dormID  }) => {

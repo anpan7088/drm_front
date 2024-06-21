@@ -3,9 +3,9 @@ import { Card, Carousel, ListGroup, Button } from 'react-bootstrap';
 import axiosInstance from '../axiosConfig';
 import WriteReview from './WriteReview';
 import PropTypes from 'prop-types';
-import DormReviews from './DormReviews';
 
 import '../scss/DormCard.scss';
+import DormReviews from './DromReviews';
 
 const DormCard = ({ dormID }) => {
     const [dorm, setDorm] = useState(null);

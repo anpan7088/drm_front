@@ -20,6 +20,18 @@ import DormReviewManagement from "./pages/DormReviewManagement";
 import Footer from "./components/Footer";
 import DormPage from "./pages/DormPage";
 
+// import Topbar from './components/Topbar';
+// import Home from './pages/Home';
+// import About from './pages/About';
+// import Contact from './pages/Contact';
+// // import Login from './components/Login';
+// import Register from "./components/Register";
+// import Profile from "./pages/UserProfile";
+// import DormsManagement from "./pages/DormsManage";
+// import DormReviewManagement from "./pages/DormReviewManagement";
+// import Footer from "./components/Footer";
+// import DormPage from "./pages/DormPage";
+
 const router = createBrowserRouter([
     {   path: "contact",
         element: <Contact />,
