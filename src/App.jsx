@@ -9,13 +9,38 @@ import "./scss/custom.scss"
 // ali neka sto via red sea za sega
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import Topbar from './components/Topbar';
 import Home from './pages/Home';
 import About from './pages/About';
+import Topbar from './components/Topbar';
+import Contact from './pages/Contact';
+import Register from "./components/Register";
+import Profile from "./pages/UserProfile";
+import DormsManagement from "./pages/DormsManage";
+import DormReviewManagement from "./pages/DormReviewManagement";
+import Footer from "./components/Footer";
+import DormPage from "./pages/DormPage";
 
 const router = createBrowserRouter([
+    {   path: "contact",
+        element: <Contact />,
+    },
     {   path: "about",
         element: <About />,
+    },
+    {   path: "profile",
+        element: <Profile />,
+    },
+    {   path: "dorms",
+        element: <DormsManagement />,
+    },
+    {   path: "reviews",
+        element: <DormReviewManagement />,
+    },
+    {   path: "dorm/:dormID",
+        element : <DormPage />,
+    },
+    {   path: "register",
+        element: <Register />,
     },
     {   path: "*",
         element: <Home />,
@@ -25,24 +50,17 @@ const router = createBrowserRouter([
 
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <div className='app'>
+            <Topbar />
+            <Container>
+                <RouterProvider router={router} />
+            </Container>
+            <Footer />
+        </div>
+    )
 }
 
 export default App
