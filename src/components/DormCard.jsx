@@ -1,6 +1,4 @@
-// src/components/DormCard.jsx
 import { useState, useMemo } from 'react';
-// import { useParams } from 'react-router-dom';
 import { Card, Carousel, ListGroup, Button } from 'react-bootstrap';
 import axiosInstance from '../axiosConfig';
 import WriteReview from './WriteReview';
@@ -8,7 +6,6 @@ import PropTypes from 'prop-types';
 
 import '../scss/DormCard.scss';
 import DormReviews from './DrormReviews';
-// import ReactJson from 'react-json-view';
 
 const DormCard = ({ dormID }) => {
     const [dorm, setDorm] = useState(null);
@@ -16,7 +13,6 @@ const DormCard = ({ dormID }) => {
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [photosBaseUrl, setPhotosBaseUrl] = useState('');
 
-    // useEffect( () => {
     useMemo(async () => {
         try {
             const dormResponse = await axiosInstance.get(`/dorms/${dormID}`);
