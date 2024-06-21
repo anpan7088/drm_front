@@ -114,7 +114,7 @@ const DormsManagement = () => {
         <Container>
             <h2>Dorms Management</h2>
             {alert && <Alert message={alert.message} variant={alert.variant} onClose={() => setAlert(null)} />}
-            
+
             <Button variant="primary" onClick={() => setShowEditModal(true)}>
                 Add Dorm
             </Button>
