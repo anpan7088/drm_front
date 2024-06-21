@@ -1,0 +1,6 @@
+/* src/styles/DormCard.scss */
+
+.carousel-image {
+    height: 500px; /* 60% of the parent container's height */
+    object-fit: cover; /* Ensures the image covers the container, maintaining aspect ratio */
+}
