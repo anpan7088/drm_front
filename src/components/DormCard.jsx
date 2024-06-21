@@ -5,7 +5,6 @@ import WriteReview from './WriteReview';
 import PropTypes from 'prop-types';
 
 import '../scss/DormCard.scss';
-import DormReviews from './DrormReviews';
 
 const DormCard = ({ dormID }) => {
     const [dorm, setDorm] = useState(null);
@@ -22,8 +21,6 @@ const DormCard = ({ dormID }) => {
             setPhotos(photosResponse.data.data);
             setPhotosBaseUrl(photosResponse.data.baseUrl);
 
-            // const reviewsResponse = await axiosInstance.get(`/dorms/${dormID}/reviews`);
-            // setReviews(reviewsResponse.data.list);
         } catch (error) {
             console.error('Error fetching dorm details:', error);
         }
