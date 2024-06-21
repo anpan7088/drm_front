@@ -1,7 +1,7 @@
 {
-  "name": "drm_front",
+  "name": "dorms_front",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,10 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-bootstrap": "^2.10.3",
+    "react-dom": "^18.2.0",
+    "react-json-view": "^1.21.3",
+    "react-router": "^6.23.1",
+    "react-router-dom": "^6.23.1",
+    "sass": "^1.77.6"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
