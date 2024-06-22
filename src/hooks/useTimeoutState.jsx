@@ -10,14 +10,15 @@ const useTimeoutState = (initialValue = false, timeout = 1000) => {
 
     const setTimedState = (value) => {
         // Clear any existing timeout
+        //        
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
         }
 
-        // Set the new state
         setState(value);
 
         // Set the timeout to reset the state
+        //
         timeoutRef.current = setTimeout(() => {
             setState(initialValue);
         }, timeout);
