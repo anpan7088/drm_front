@@ -5,32 +5,18 @@ import { Button, Container } from 'react-bootstrap'
 // Bootstrap Bundle JS, bootstrap.css is imported in the App.scss
 import "./scss/App.scss";
 import "./scss/custom.scss"
-// #mkd java script za bootstrap ne sum siguren bash dali treba oti upotrebuime komponenti react-bootstrap
-// ali neka sto via red sea za sega
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
+import Topbar from './components/Topbar';
 import Home from './pages/Home';
 import About from './pages/About';
-import Topbar from './components/Topbar';
 import Contact from './pages/Contact';
 import Register from "./components/Register";
 import Profile from "./pages/UserProfile";
 import DormsManagement from "./pages/DormsManage";
 import DormReviewManagement from "./pages/DormReviewManagement";
-import Footer from "./components/Footer";
 import DormPage from "./pages/DormPage";
-
-// import Topbar from './components/Topbar';
-// import Home from './pages/Home';
-// import About from './pages/About';
-// import Contact from './pages/Contact';
-// // import Login from './components/Login';
-// import Register from "./components/Register";
-// import Profile from "./pages/UserProfile";
-// import DormsManagement from "./pages/DormsManage";
-// import DormReviewManagement from "./pages/DormReviewManagement";
-// import Footer from "./components/Footer";
-// import DormPage from "./pages/DormPage";
+import Footer from "./components/Footer";
 
 const router = createBrowserRouter([
     {   path: "contact",
