@@ -10,7 +10,6 @@ import { removeCredentials } from './context/localStorage'
 // Create an instance of Axios with default configurations
 const axiosInstance = axios.create({
     baseURL: 'https://dorms.sman.cloud/api', // Your API base URL (for production)
-    // baseURL: 'https://drm-api.sman.cloud',
     // baseURL: 'http://localhost:8086', 
     // baseURL: '/api',
     headers: {
