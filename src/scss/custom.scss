@@ -1,18 +1,33 @@
 // custom.scss
 
+// Flatly
+@import "bootswatch/flatly/variables"; 
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "bootswatch/flatly/bootswatch";  
+
+
+// cyborg theme
+// @import "bootswatch/cyborg/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/cyborg/bootswatch";  
+
+// Solar theme
+// @import "bootswatch/solar/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/solar/bootswatch";  
+
+
 // Define your custom color palette
-$theme-colors: (
-    "primary": #6e827c,
-    "secondary": #118f65,
-    "success": #28a745,
-    "info": #17a2b8,
-    "warning": #ffc107,
-    "danger": #da283a,
-    "light": #dfe6ec,
-    "dark": #343a40,
-    "custom-color": #277255
-);
+// $theme-colors: (
+//     "primary": #6e827c,
+//     "secondary": #118f65,
+//     "success": #28a745,
+//     "info": #17a2b8,
+//     "warning": #ffc107,
+//     "danger": #da283a,
+//     "light": #dfe6ec,
+//     "dark": #343a40,
+//     "custom-color": #277255
+// );
 
-// @import "./App.scss";
 
-@import "../../node_modules/bootstrap/scss/bootstrap.scss"; // Import Bootstrap's SCSS
