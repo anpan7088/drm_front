@@ -27,23 +27,28 @@ body {
     max-width: 600px; /* Adjust as needed */
 }
 
-.carousel-image {
-    height: 500px; /* 60% of the parent container's height */
-    object-fit: cover; /* Ensures the image covers the container, maintaining aspect ratio */
-}
-
 @import "footer";    // import _footer.scss
 @import "dormcard";  // import dormcard.scss
 
 
-// free themes from https://bootswatch.com/ 
-// you can also use your own custom theme
-// uncomment the theme you want to use
+// Free themes from https://bootswatch.com/ 
+// You can also use your own custom theme
+// Uncomment the theme you want to use
+
+// Anpan theme
+@import "bootswatch/anpan/variables"; 
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "bootswatch/anpan/bootswatch";  
+
+// Sketchy theme
+// @import "bootswatch/sketchy/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/sketchy/bootswatch";  
 
 // Spacelab theme
-@import "bootswatch/spacelab/variables"; 
-@import "node_modules/bootstrap/scss/bootstrap";
-@import "bootswatch/spacelab/bootswatch";  
+// @import "bootswatch/spacelab/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/spacelab/bootswatch";  
 
 // Flatly
 // @import "bootswatch/flatly/variables"; 
