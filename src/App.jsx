@@ -3,9 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Button, Container } from 'react-bootstrap'
 
 // Bootstrap Bundle JS, bootstrap.css is imported in the App.scss
-import "./scss/App.scss";
-import "./scss/custom.scss"
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./scss/App.scss"
 
 import Topbar from './components/Topbar';
 import Home from './pages/Home';

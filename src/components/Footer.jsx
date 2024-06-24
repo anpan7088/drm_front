@@ -1,4 +1,4 @@
-import "../scss/Footer.scss";
+// import "../scss/Footer.scss";
 // import { useLoginContext } from "../context/loginContext";
 import { appAbout } from "../../AboutData.json";
 

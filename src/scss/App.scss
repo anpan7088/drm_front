@@ -26,3 +26,52 @@ body {
     width: 80%; /* Adjust as needed */
     max-width: 600px; /* Adjust as needed */
 }
+
+.carousel-image {
+    height: 500px; /* 60% of the parent container's height */
+    object-fit: cover; /* Ensures the image covers the container, maintaining aspect ratio */
+}
+
+@import "footer";    // import _footer.scss
+@import "dormcard";  // import dormcard.scss
+
+
+// free themes from https://bootswatch.com/ 
+// you can also use your own custom theme
+// uncomment the theme you want to use
+
+// Spacelab theme
+@import "bootswatch/spacelab/variables"; 
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "bootswatch/spacelab/bootswatch";  
+
+// Flatly
+// @import "bootswatch/flatly/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/flatly/bootswatch";  
+
+// Morph theme
+// @import "bootswatch/morph/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/morph/bootswatch";  
+
+// cyborg theme
+// @import "bootswatch/cyborg/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/cyborg/bootswatch";  
+
+
+// Define your custom color palette
+// $theme-colors: (
+//     "primary": #6e827c,
+//     "secondary": #118f65,
+//     "success": #28a745,
+//     "info": #17a2b8,
+//     "warning": #ffc107,
+//     "danger": #da283a,
+//     "light": #dfe6ec,
+//     "dark": #343a40,
+//     "custom-color": #277255
+// );
+
+
