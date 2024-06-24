@@ -1,20 +1,26 @@
 // custom.scss
+// free themes from https://bootswatch.com/ 
+// uncomment the theme you want to use
 
 // Flatly
-@import "bootswatch/flatly/variables"; 
-@import "node_modules/bootstrap/scss/bootstrap";
-@import "bootswatch/flatly/bootswatch";  
+// @import "bootswatch/flatly/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/flatly/bootswatch";  
 
+// Morph theme
+// @import "bootswatch/morph/variables"; 
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "bootswatch/morph/bootswatch";  
 
 // cyborg theme
 // @import "bootswatch/cyborg/variables"; 
 // @import "node_modules/bootstrap/scss/bootstrap";
 // @import "bootswatch/cyborg/bootswatch";  
 
-// Solar theme
-// @import "bootswatch/solar/variables"; 
-// @import "node_modules/bootstrap/scss/bootstrap";
-// @import "bootswatch/solar/bootswatch";  
+// Spacelab theme
+@import "bootswatch/spacelab/variables"; 
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "bootswatch/spacelab/bootswatch";  
 
 
 // Define your custom color palette
