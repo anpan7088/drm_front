@@ -16,7 +16,7 @@ const DormReviews = ({ dormID  }) => {
             const reviewsResponse = await axiosInstance.get(`/dorms/${dormID}/reviews`);
             setReviews(reviewsResponse.data.list);
         } catch (error) {
-            console.error('Error fetching dorm details:', error);
+            console.error('Error fetching dorm revies list:', error);
         }
     }, []);
 

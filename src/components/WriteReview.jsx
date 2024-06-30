@@ -13,7 +13,6 @@ const WriteReview = ({ dormId, onClose }) => {
         try {
             await axiosInstance.post('/reviews', {
                 dorm_id: dormId,
-                user_id: 4, // This should be dynamically set based on logged-in user
                 rating: rating,
                 comment: comment,
             });
