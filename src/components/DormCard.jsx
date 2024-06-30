@@ -11,6 +11,7 @@ const DormCard = ({ dormID }) => {
     const [photos, setPhotos] = useState([]);
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [photosBaseUrl, setPhotosBaseUrl] = useState('');
+    const [refresh, setRefresh] = useState(false);
 
     useMemo(async () => {
         try {
@@ -33,6 +34,7 @@ const DormCard = ({ dormID }) => {
 
     const handleCloseReviewForm = () => {
         setShowReviewForm(false);
+        setRefresh(!refresh);
     };
 
     return (
@@ -60,7 +62,7 @@ const DormCard = ({ dormID }) => {
                             </Carousel>
                         )}
                         {/* <ReactJson src={reviews} /> */}
-                        <DormReviews dormID={dormID} />
+                        <DormReviews dormID={dormID} refresh={refresh} />
                     </Card.Body>
                     <Card.Footer>
                         <Button variant="primary" onClick={handleWriteReview}>

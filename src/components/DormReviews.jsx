@@ -6,7 +6,7 @@ import axiosInstance from '../axiosConfig';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
 
-const DormReviews = ({ dormID  }) => {
+const DormReviews = ({ dormID, refresh  }) => {
     const { userName, userRole } = useLoginContext();
 
     const [reviews, setReviews] = useState([]);
@@ -22,7 +22,8 @@ const DormReviews = ({ dormID  }) => {
 
     useMemo(() => {
         fetchReviews();
-    }, [])
+        console.log(`Fetch reviews for dorm ${dormID}`);
+    }, [refresh, dormID]);
 
     const handleDelete = async (reviewId) => {
         try {
@@ -51,7 +52,8 @@ const DormReviews = ({ dormID  }) => {
 };
 
 DormReviews.propTypes = {
-    dormID: PropTypes.number.isRequired
+    dormID: PropTypes.number.isRequired,
+    refresh: PropTypes.bool.isRequired
 };
     
 export default DormReviews;

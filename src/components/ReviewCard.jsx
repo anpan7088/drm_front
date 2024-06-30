@@ -40,7 +40,7 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
             </Card.Body>
             <Card.Footer className="d-flex justify-content-end">
                 {( (userName === review.username || userRole === 'admin') && !isEditing ) && (
-                    <Button variant="danger" class="ml-20"  onClick={onDelete}>
+                    <Button variant="danger"  onClick={onDelete}>
                         Delete
                     </Button>
                 )}
