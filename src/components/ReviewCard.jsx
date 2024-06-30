@@ -19,8 +19,8 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
     };
 
     return (
-        <Card className=" justify-content-between align-items-center">
-            <Card.Body>
+        <Card className="mb-1">
+            <Card.Body className='text-left'>   
                 {isEditing ? (
                     <Form>
                         <Form.Group controlId="formComment">
@@ -38,9 +38,9 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
                     </>
                 )}
             </Card.Body>
-            <Card.Footer className='d-flex justify-content-between align-items-end'>
-                {(userName === review.username || userRole === 'admin') && (
-                    <Button variant="danger" className="mr-2" onClick={onDelete}>
+            <Card.Footer className="d-flex justify-content-end">
+                {( (userName === review.username || userRole === 'admin') && !isEditing ) && (
+                    <Button variant="danger" class="ml-20"  onClick={onDelete}>
                         Delete
                     </Button>
                 )}
@@ -48,19 +48,19 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
                     <>
                         {isEditing ? (
                             <>
-                                <Button variant="success" className="mr-2" onClick={handlePatchReview}>
+                                <Button variant="success" className="ms-1" onClick={handlePatchReview}>
                                     Save
                                 </Button>
-                                <Button variant="secondary" onClick={() => setIsEditing(false)}>
+                                <Button variant="secondary" className="ms-1"  onClick={() => setIsEditing(false)}>
                                     Cancel
                                 </Button>
                             </>
                         ) : (
-                            <Button variant="primary" onClick={() => setIsEditing(true)}>
+                            <Button variant="primary" className="ms-1"  onClick={() => setIsEditing(true)}>
                                 Edit
                             </Button>
                         )}
-                    </>
+                    </> 
                 )}
             </Card.Footer>
         </Card>
