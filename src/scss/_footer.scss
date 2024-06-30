@@ -4,13 +4,12 @@
     padding: 20px 0;
     text-align: center;
     border-top: 1px solid #e7e7e7;
-    position: fixed;
-    /* Make the footer fixed to the bottom */
+    
+    position: sticky;
+    
     bottom: 0;
-    /* Position it at the absolute bottom */
     width: 100%;
-    /* Stretch the footer across the entire width */
-
+    
     .container {
         max-width: 960px;
         margin: 0 auto;
