@@ -11,14 +11,18 @@ const DormReviews = ({ dormID  }) => {
 
     const [reviews, setReviews] = useState([]);
 
-    useMemo(async () => {
+    const fetchReviews = async () => {
         try {
             const reviewsResponse = await axiosInstance.get(`/dorms/${dormID}/reviews`);
             setReviews(reviewsResponse.data.list);
         } catch (error) {
-            console.error('Error fetching dorm revies list:', error);
+            console.error('Error fetching dorm details:', error);
         }
-    }, []);
+    };
+
+    useMemo(() => {
+        fetchReviews();
+    }, [])
 
     const handleDelete = async (reviewId) => {
         try {
@@ -39,6 +43,7 @@ const DormReviews = ({ dormID  }) => {
                     userName={userName}
                     userRole={userRole}
                     onDelete={() => handleDelete(review.id)}
+                    onEdit={() => fetchReviews()}
                 />
             ))}
         </ListGroup>

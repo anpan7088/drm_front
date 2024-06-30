@@ -4,7 +4,7 @@ import { ListGroup, Button, Card, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axiosInstance from '../axiosConfig';
 
-const ReviewCard = ({ review, userName, userRole, onDelete }) => {
+const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedComment, setEditedComment] = useState(review.comment);
 
@@ -12,6 +12,7 @@ const ReviewCard = ({ review, userName, userRole, onDelete }) => {
         try {
             await axiosInstance.patch(`/reviews/${review.id}`, { comment: editedComment });
             setIsEditing(false);
+            onEdit();
         } catch (error) {
             console.error('Error updating review:', error);
         }
@@ -75,6 +76,7 @@ ReviewCard.propTypes = {
     userName: PropTypes.string.isRequired,
     userRole: PropTypes.string.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
 };
 
 export default ReviewCard;
