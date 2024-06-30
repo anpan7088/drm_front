@@ -1,9 +1,20 @@
 // ReviewCard.js
-import React from 'react';
+import React, { useState } from 'react';
 import { ListGroup, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import WriteReview from './WriteReview';
 
 const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
+    const [showReviewForm, setShowReviewForm] = useState(false);
+
+    const handleWriteReview = () => {
+        setShowReviewForm(true);
+    };
+
+    const handleCloseReviewForm = () => {
+        setShowReviewForm(false);
+    };
+
     return (
         <ListGroup.Item className="d-flex justify-content-between align-items-start">
             <div>
@@ -17,11 +28,14 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
                     </Button>
                 )}
                 {userName === review.username && (
-                    <Button variant="primary" onClick={onEdit}>
+                    <Button variant="primary" onClick={handleWriteReview}>
                         Edit
                     </Button>
                 )}
             </div>
+            {showReviewForm && (
+                <WriteReview reviewId={review.id} onClose={handleCloseReviewForm} />
+            )}
         </ListGroup.Item>
     );
 };
