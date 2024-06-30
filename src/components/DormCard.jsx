@@ -4,7 +4,6 @@ import axiosInstance from '../axiosConfig';
 import WriteReview from './WriteReview';
 import PropTypes from 'prop-types';
 
-// import '../scss/DormCard.scss';
 import DormReviews from './DormReviews';
 
 const DormCard = ({ dormID }) => {

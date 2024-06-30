@@ -171,8 +171,8 @@ const DormsManagement = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>{editingId ? 'Edit Dorm' : 'Add Dorm'}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
+                    <Modal.Body>
                         <Form.Group controlId="formName">
                             <Form.Label>Name</Form.Label>
                             <Form.Control
@@ -201,11 +201,13 @@ const DormsManagement = () => {
                             onSelect={handleCityChange}
                         />
 
+                    </Modal.Body>
+                    <Modal.Footer>
                         <Button variant="primary" type="submit">
                             {editingId ? 'Update Dorm' : 'Add Dorm'}
                         </Button>
-                    </Form>
-                </Modal.Body>
+                    </Modal.Footer>
+                </Form>
             </Modal>
         </Container>
     );

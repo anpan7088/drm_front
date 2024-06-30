@@ -27,8 +27,8 @@ const WriteReview = ({ dormId, onClose }) => {
             <Modal.Header closeButton>
                 <Modal.Title>Write a Review</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
+                <Modal.Body>
                     <Form.Group controlId="formRating">
                         <Form.Label>Rating</Form.Label>
                         <Form.Control
@@ -50,11 +50,14 @@ const WriteReview = ({ dormId, onClose }) => {
                             required
                         />
                     </Form.Group>
+                </Modal.Body>
+                <Modal.Footer className='col'>
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
-                </Form>
-            </Modal.Body>
+                </Modal.Footer>
+            </Form>
+
         </Modal>
     );
 };

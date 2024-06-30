@@ -94,3 +94,25 @@
   .list-group {
     font-size: $font-size-sm;
   }
+
+
+// Tweaks by Angela Panovska
+
+// Modal 
+.modal-footer {
+    background-color: $gray-600;
+}
+
+.modal-header {
+    background-color: $info;
+    .modal-title {
+        color: $white;
+        font-size: larger; /* Adjust font size as needed */
+    }
+    .btn-close{
+         color: $white; // doesent work ???
+        font-size: medium;
+        background-color: $warning;
+    }
+}
+
