@@ -1,8 +1,10 @@
+// DormReviews.js
 import { ListGroup, Button } from 'react-bootstrap';
 import { useLoginContext } from '../context/loginContext';
 import { useMemo, useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import PropTypes from 'prop-types';
+import ReviewCard from './ReviewCard';
 
 const DormReviews = ({ dormID  }) => {
     const { userName, userRole } = useLoginContext();
@@ -18,10 +20,31 @@ const DormReviews = ({ dormID  }) => {
         }
     }, []);
 
+    const handleDelete = (reviewId) => {
+        // Implement delete logic here
+        console.log(`Delete review ${reviewId}`);
+    };
+
+    const handleEdit = (reviewId) => {
+        // Implement edit logic here
+        console.log(`Edit review ${reviewId}`);
+    };
 
     return (
         <ListGroup>
+            <ListGroup>
             {reviews.map((review, index) => (
+                <ReviewCard
+                    key={index}
+                    review={review}
+                    userName={userName}
+                    userRole={userRole}
+                    onDelete={() => handleDelete(review.id)}
+                    onEdit={() => handleEdit(review.id)}
+                />
+            ))}
+            </ListGroup>
+            {/* {reviews.map((review, index) => (
                 <ListGroup.Item key={index} className="d-flex justify-content-between align-items-start">
                     <div>
                         <p>{review.comment}</p>
@@ -39,8 +62,7 @@ const DormReviews = ({ dormID  }) => {
                             </Button>
                         )}
                     </div>
-                </ListGroup.Item>
-            ))}
+                </ListGroup.Item> */}
         </ListGroup>
     );
 };
