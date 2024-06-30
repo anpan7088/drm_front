@@ -4,34 +4,22 @@ import { Modal, Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 
-const WriteReview = ({ dormId, onClose, review_id }) => {
+const WriteReview = ({ dormId, onClose }) => {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (review_id) {
-            try {
-                await axiosInstance.patch(`/reviews/${review_id}`, {
-                    rating: rating,
-                    comment: comment,
-                });
-                onClose();
-            } catch (error) {
-                console.error(`Error updating review id:${review_id} ;`, error);
-            }
-        } else {
-            try {
-                await axiosInstance.post('/reviews', {
-                    dorm_id: dormId,
-                    rating: rating,
-                    comment: comment,
-                });
-                onClose();
-            } catch (error) {
-                console.error('Error submitting review', error);
-            }
-        };
+        try {
+            await axiosInstance.post('/reviews', {
+                dorm_id: dormId,
+                rating: rating,
+                comment: comment,
+            });
+            onClose();
+        } catch (error) {
+            console.error('Error submitting review', error);
+        }
     };
 
     return (

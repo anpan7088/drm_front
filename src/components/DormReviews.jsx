@@ -30,14 +30,8 @@ const DormReviews = ({ dormID  }) => {
         }
     };
 
-    const handleEdit = (reviewId) => {
-        // Implement edit logic here
-        console.log(`Edit review ${reviewId}`);
-    };
-
     return (
         <ListGroup>
-            <ListGroup>
             {reviews.map((review, index) => (
                 <ReviewCard
                     key={index}
@@ -45,10 +39,8 @@ const DormReviews = ({ dormID  }) => {
                     userName={userName}
                     userRole={userRole}
                     onDelete={() => handleDelete(review.id)}
-                    onEdit={() => handleEdit(review.id)}
                 />
             ))}
-            </ListGroup>
         </ListGroup>
     );
 };
