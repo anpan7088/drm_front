@@ -20,9 +20,14 @@ const DormReviews = ({ dormID  }) => {
         }
     }, []);
 
-    const handleDelete = (reviewId) => {
-        // Implement delete logic here
-        console.log(`Delete review ${reviewId}`);
+    const handleDelete = async (reviewId) => {
+        try {
+            axiosInstance.delete(`/reviews/${reviewId}`);
+            setReviews(reviews.filter((review) => review.id!== reviewId));
+            console.log(`Delete review ${reviewId}`);
+        } catch (error) {
+            console.error('Error deleting review:', error);
+        }
     };
 
     const handleEdit = (reviewId) => {
