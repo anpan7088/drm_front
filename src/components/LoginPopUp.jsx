@@ -49,10 +49,10 @@ const LoginPopUp = ({ show, handleClose }) => {
             <Modal.Header closeButton>
                 <Modal.Title>Login</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                {message && <p>{message}</p>}
-                {alert && <Alert message={alert.message} variant={alert.variant} onClose={() => setAlert(null)} />}
-                <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
+                <Modal.Body>
+                    {message && <p>{message}</p>}
+                    {alert && <Alert message={alert.message} variant={alert.variant} onClose={() => setAlert(null)} />}
                     <Form.Group controlId="formUsername">
                         <Form.Label>Username</Form.Label>
                         <Form.Control
@@ -74,12 +74,13 @@ const LoginPopUp = ({ show, handleClose }) => {
                             required
                         />
                     </Form.Group>
-
+                </Modal.Body>
+                <Modal.Footer>
                     <Button variant="primary" type="submit">
                         Login
                     </Button>
-                </Form>
-            </Modal.Body>
+                </Modal.Footer>
+            </Form>
         </Modal>
     );
 };
@@ -89,7 +90,7 @@ const LoginPopUp = ({ show, handleClose }) => {
 // За тоа нека го :) 
 // ChatGPT za pojasno da ti bide 
 // Explain the following code:
-import  PropTypes  from 'prop-types';
+import PropTypes from 'prop-types';
 LoginPopUp.propTypes = {
     show: PropTypes.bool.isRequired,
     handleClose: PropTypes.func.isRequired
