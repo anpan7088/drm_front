@@ -2,11 +2,16 @@ import { useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Modal, Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-
+import StarRating from './StarRating';
 
 const WriteReview = ({ dormId, onClose }) => {
     const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState('');
+    const [comment, setComment] = useState();
+
+    const handleRatingChange = (newRating) => {
+        setRating(newRating);
+        console.log('New rating:', newRating);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,15 +36,8 @@ const WriteReview = ({ dormId, onClose }) => {
                 <Modal.Body>
                     <Form.Group controlId="formRating">
                         <Form.Label>Rating</Form.Label>
-                        <Form.Control
-                            type="number"
-                            min="1"
-                            max="5"
-                            value={rating}
-                            onChange={(e) => setRating(e.target.value)}
-                            required
-                        />
-                    </Form.Group>
+                        <StarRating rating={rating} onRatingChange={handleRatingChange} />
+                    </Form.Group>   
                     <Form.Group controlId="formComment">
                         <Form.Label>Comment</Form.Label>
                         <Form.Control
