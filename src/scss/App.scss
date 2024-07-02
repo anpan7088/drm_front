@@ -27,9 +27,14 @@ body {
     max-width: 600px; /* Adjust as needed */
 }
 
+
+// Import all styles for the components
 @import "footer";    // import _footer.scss
 @import "dormcard";  // import _dormcard.scss
+@import "SmallDormCard"; // import _SmallDormCard.scss
 @import "StarRating"; // import _StarRating.scss
+
+
 
 // Free themes from https://bootswatch.com/ 
 // You can also use your own custom theme

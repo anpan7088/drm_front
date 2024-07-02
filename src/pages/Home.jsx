@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import axiosInstance from '../axiosConfig';
+import { Container, Row, Col } from 'react-bootstrap';
 import DormCard from '../components/DormCard';
 import TopDorms from '../components/TopDorms';
+import SmallDormCard from '../components/SmallDormCard';
+
 
 const HomePage = () => {
-    const [dormOfTheDay, setDormOfTheDay] = useState(null);
+    const [topDorms, setTopDorms] = useState([]);
 
-    useEffect(() => {
-        // Fetch dorm of the day
-        axiosInstance.get('/dorms/dorm-of-the-day/1')
+    useMemo(() => {
+        // Fetch top dorms
+        axiosInstance.get('/dorms/top-dorms/4')
             .then(response => {
-                setDormOfTheDay(response.data[0]);
+                setTopDorms(response.data);
             })
             .catch(error => {
-                console.error('Error fetching dorm of the day:', error);
+                console.error('Error fetching top dorms:', error);
             });
     }, []);
 
@@ -21,17 +24,18 @@ const HomePage = () => {
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-8">
-                <h2>Dorm of the Day </h2>
-                {dormOfTheDay ? (
-                        <DormCard dormID={dormOfTheDay.id} />
-                    ) : (
-                        <p>Loading...</p>
-                    )}
+                    <h2>Dormas..</h2>
+                    <Container>
+                        <Row>
+                            {topDorms.map((dorm) => (
+                                <Col key={dorm.id} sm={6} md={4} lg={3}>
+                                    <SmallDormCard dorm={dorm} />
+                                </Col>
+                            ))}
+                        </Row>
+                    </Container>
                 </div>
-                <div className="col-md-4">
-                    <TopDorms />
-                </div>
-`            </div>
+            </div>
         </div>
     );
 };

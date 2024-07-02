@@ -34,10 +34,7 @@ const WriteReview = ({ dormId, onClose }) => {
             </Modal.Header>
             <Form onSubmit={handleSubmit}>
                 <Modal.Body>
-                    <Form.Group controlId="formRating">
-                        <Form.Label>Rating</Form.Label>
-                        <StarRating rating={rating} onRatingChange={handleRatingChange} />
-                    </Form.Group>   
+                    <StarRating label='Rating' rating={rating} onRatingChange={handleRatingChange} />
                     <Form.Group controlId="formComment">
                         <Form.Label>Comment</Form.Label>
                         <Form.Control
