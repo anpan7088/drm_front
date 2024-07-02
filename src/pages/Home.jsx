@@ -11,7 +11,7 @@ const HomePage = () => {
 
     useMemo(() => {
         // Fetch top dorms
-        axiosInstance.get('/dorms/top-dorms-with-images/4')
+        axiosInstance.get('/dorms/top-dorms-with-images/400')
             .then(response => {
                 setTopDorms(response.data);
             })

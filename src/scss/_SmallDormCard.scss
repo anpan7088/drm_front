@@ -1,0 +1,11 @@
+.small-dorm-card {
+    width: 200px;  /* fixed width */
+    height: 300px; /* fixed height */
+    margin: 10px;
+    overflow: hidden;
+    &.dorm-image {
+        width: 100%;
+        height: 60%; /* 60% of the card's height */
+        object-fit: cover; /* crop or stretch image to fill */
+    }
+}
