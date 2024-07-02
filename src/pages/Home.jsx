@@ -21,9 +21,9 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="container mt-5">
-            <div className="row">
-                <div className="col-md-8">
+        <Container>
+            <Row>
+                <Col>
                     <h3>Dorms and student homes..</h3>
                     <Container>
                         <Row>
@@ -34,9 +34,9 @@ const HomePage = () => {
                             ))}
                         </Row>
                     </Container>
-                </div>
-            </div>
-        </div>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
