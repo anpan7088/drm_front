@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, Badge } from 'react-bootstrap';
+// import ReactJson from 'react-json-view'
 
 
 const SmallDormCard = ({ dorm }) => {
     return (
         <Card className="small-dorm-card">
-            <Card.Img variant="top" src={dorm.photos[0]} alt="Dorm Image" />
+            <Card.Img variant="top" src={dorm.images[0].url} alt="Dorm Image" />
+            {/* <ReactJson src={dorm} /> */}
             <Card.Body>
                 <Card.Title>{dorm.name}</Card.Title>
                 <Card.Text>
@@ -28,8 +30,8 @@ SmallDormCard.propTypes = {
         name: PropTypes.string.isRequired,
         address: PropTypes.string.isRequired,
         city: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        photos: PropTypes.arrayOf(PropTypes.string).isRequired,
+        avg_rating: PropTypes.string,
+        images: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
 };
 

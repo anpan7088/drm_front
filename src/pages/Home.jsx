@@ -11,7 +11,7 @@ const HomePage = () => {
 
     useMemo(() => {
         // Fetch top dorms
-        axiosInstance.get('/dorms/top-dorms/4')
+        axiosInstance.get('/dorms/top-dorms-with-images/4')
             .then(response => {
                 setTopDorms(response.data);
             })
@@ -24,7 +24,7 @@ const HomePage = () => {
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-8">
-                    <h2>Dormas..</h2>
+                    <h3>Dorms and student homes..</h3>
                     <Container>
                         <Row>
                             {topDorms.map((dorm) => (
