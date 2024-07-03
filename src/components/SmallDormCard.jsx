@@ -16,20 +16,20 @@ const SmallDormCard = ({ dorm }) => {
 
     return (
         <Card className="small-dorm-card">
-            <Card.Img variant="top" src={dorm.images[0].url} alt="Dorm Image" onClick={handleClick} />
+            <Card.Img className="small-dorm-card-img" variant="top" src={dorm.images[0].url} alt="Dorm Image" onClick={handleClick} />
             {/* <ReactJson src={dorm} /> */}
             <Card.Body>
                 <Card.Title>{dorm.name}</Card.Title>
                 <Card.Text>
                     {dorm.address}, {dorm.city}
                 </Card.Text>
-                <div className="d-flex justify-content-between align-items-center">
-                    <Badge pill bg="primary">
-                        {dorm.avg_rating} ★
-                    </Badge>
-                    <Button variant="primary" onClick={handleClick}>View</Button>
-                </div>
             </Card.Body>
+            <Card.Footer className="d-flex justify-content-between">
+                <Badge pill bg="primary">
+                    {dorm.avg_rating} ★
+                </Badge>
+                <Button variant="primary" onClick={handleClick}>View</Button>
+            </Card.Footer>
         </Card>
     );
 };

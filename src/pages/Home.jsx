@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import axiosInstance from '../axiosConfig';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, CardGroup } from 'react-bootstrap';
 import DormCard from '../components/DormCard';
 import TopDorms from '../components/TopDorms';
 import SmallDormCard from '../components/SmallDormCard';
@@ -22,19 +22,13 @@ const HomePage = () => {
 
     return (
         <Container>
-            <Row>
-                <Col>
-                    <h3>Dorms and student homes..</h3>
-                    <Container>
-                        <Row>
-                            {topDorms.map((dorm) => (
-                                <Col key={dorm.id} sm={6} md={4} lg={3}>
-                                    <SmallDormCard dorm={dorm} />
-                                </Col>
-                            ))}
-                        </Row>
-                    </Container>
-                </Col>
+            <h4>Dorms and student homes..</h4>
+            <Row xs={1} md={2} className="g-4">
+                {topDorms.map((dorm) => (
+                    <Col key={dorm.id} sm={6} md={4} lg={3} >
+                        <SmallDormCard dorm={dorm} />
+                    </Col>
+                ))}
             </Row>
         </Container>
     );

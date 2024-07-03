@@ -1,17 +1,34 @@
 // Small Dorm Card Styling
 
 .small-dorm-card {
-    width: auto;  /* fixed width */
-    height: 300px; /* fixed height */
-    margin: 10px;
-    &.dorm-image {
-        width: 100%;
-        height: 60%; /* 60% of the card's height */
-        object-fit: cover; /* crop or stretch image to fill */
+
+    .card-title {
+      color: $gray-600;
+      font-weight: 400;
+      font-size: 1em;
+    }
+  
+    .card-body {    
+        color: $body-color;
+        background-color: $light;
+    }
+
+    .card-footer {
+      background-color: $gray-300;
     }
 }
 
-.card-title {
-    color: red !important;
-    font-weight: 500;
-}
+.small-dorm-card-img {
+    width: 100%;
+    height: 60%; /* 60% of the card's height */
+    object-fit: cover; /* crop or stretch image to fill */
+    transition: transform 0.18s ease-in-out; /* Transition for smooth scaling */
+
+    /* New styles for hover effect */
+    &:hover {
+      transform: scale(1.02); /* Scale image up slightly on hover */
+      border-radius: 6px;
+      cursor: pointer; /* Change cursor to pointer on hover */
+      box-shadow: 0 0 10px 5px rgba(0,0,0,0.2); /* Add a drop shadow on hover */
+    }
+  }
