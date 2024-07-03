@@ -18,6 +18,7 @@ const Topbar = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/carusels">Carusels</Nav.Link>
                             <NavDropdown title="Dorms" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="/dorms">Dorm Management</NavDropdown.Item>
                                 <NavDropdown.Item href="/reviews">Dorm reviews</NavDropdown.Item>

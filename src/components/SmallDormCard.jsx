@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, Badge } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import ImageCarusel from './ImageCarusel';
 // import ReactJson from 'react-json-view'
 
 
-const SmallDormCard = ({ dorm }) => {
-    // const navigate = useNavigate();
+const SmallDormCard = ({ dorm, carusels }) => {
     // hook from react router v6
     const navigate = useNavigate();
 
@@ -16,7 +16,14 @@ const SmallDormCard = ({ dorm }) => {
 
     return (
         <Card className="small-dorm-card">
-            <Card.Img className="small-dorm-card-img" variant="top" src={dorm.images[0].url} alt="Dorm Image" onClick={handleClick} />
+
+            {carusels && (
+                <ImageCarusel className="small-dorm-card-img" images={dorm.images} onClick={handleClick} />
+            )} 
+            {!carusels && (
+                <Card.Img className="small-dorm-card-img" variant="top" src={dorm.images[0].url} alt="Dorm Image" onClick={handleClick} />
+            )}
+
             {/* <ReactJson src={dorm} /> */}
             <Card.Body>
                 <Card.Title>{dorm.name}</Card.Title>
