@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button, Badge, Image } from 'react-bootstrap';
+import { Card, Button, Badge, Image, Carousel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import ImageCarusel from './ImageCarusel';
-// import ReactJson from 'react-json-view'
 
-
-const SmallDormCard = ({ dorm, carusels }) => {
+const SmallDormCardCarusel = ({ dorm }) => {
     // hook from react router v6
     const navigate = useNavigate();
 
@@ -15,9 +12,22 @@ const SmallDormCard = ({ dorm, carusels }) => {
     };
 
     return (
-        <Card className="small-dorm-card">
-            <Card.Img className="small-dorm-card-img" variant="top" src={dorm.images[0].url} alt="Dorm Image" onClick={handleClick} />
-            {/* <ReactJson src={dorm} /> */}
+        <Card className="small-dorm-card-carusel">
+            <Carousel>
+                <Carousel.Item>
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
+            <Carousel className='small-dorm-card-carusel'>
+                {dorm.images.map((image) => (
+                    <Carousel.Item>
+                        <Image src={image.url} alt="First slide" style={{height: '300px'}} />
+                    </Carousel.Item>
+                ))}
+            </Carousel>
             <Card.Body>
                 <Card.Title>{dorm.name}</Card.Title>
                 <Card.Text>
@@ -36,7 +46,7 @@ const SmallDormCard = ({ dorm, carusels }) => {
     );
 };
 
-SmallDormCard.propTypes = {
+SmallDormCardCarusel.propTypes = {
     dorm: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
@@ -54,4 +64,4 @@ SmallDormCard.propTypes = {
     }).isRequired,
 };
 
-export default SmallDormCard;
+export default SmallDormCardCarusel;

@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Row, Col } from 'react-bootstrap';
-import SmallDormCard from '../components/SmallDormCard';
-
+import SmallDormCardCarusel from '../components/SmallDormCardCarusel';
 
 const Carusels = () => {
     const [topDorms, setTopDorms] = useState([]);
@@ -24,7 +23,7 @@ const Carusels = () => {
             <Row xs={1} md={2} className="g-4">
                 {topDorms.map((dorm) => (
                     <Col key={dorm.id} sm={6} md={4} lg={3}>
-                        <SmallDormCard dorm={dorm} carusels={true} />
+                        <SmallDormCardCarusel dorm={dorm} />
                     </Col>
                 ))}
             </Row>
