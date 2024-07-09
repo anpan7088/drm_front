@@ -14,14 +14,6 @@ const SmallDormCardCarusel = ({ dorm }) => {
     return (
         <Card className="small-dorm-card-carusel">
             <Carousel>
-                <Carousel.Item>
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
-            <Carousel className='small-dorm-card-carusel'>
                 {dorm.images.map((image) => (
                     <Carousel.Item>
                         <Image src={image.url} alt="First slide" style={{height: '300px'}} />
