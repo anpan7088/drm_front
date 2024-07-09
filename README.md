@@ -1,4 +1,4 @@
-# Dorms reviews - forntend
+# Dorm reviews - forntend
 
 Front end is build with [ReactJS](https://react.dev/). 
 
