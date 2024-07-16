@@ -1,0 +1,19 @@
+.stars-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stars-rating-label {
+    margin-bottom: -.5em;
+    font-weight: lighter;
+}
+
+.stars {
+    font-size: 1.5rem;
+    color: gray;
+    transition: color 0.2s;
+    &.filled {
+        color: gold;
+    }
+}

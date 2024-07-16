@@ -10,6 +10,7 @@ const WriteReview = ({ dormId, onClose }) => {
     const [rating, setRating] = useState(0);
     const [room_rating, setRoomRating] = useState(0);
     const [location_rating, setLocationRating] = useState(0);
+    const [bathroom_rating, setBathroomRating] = useState(0);
     const [comment, setComment] = useState();
 
     const handleRatingChange = (newRating) => {
@@ -23,8 +24,12 @@ const WriteReview = ({ dormId, onClose }) => {
             await axiosInstance.post('/reviews', {
                 dorm_id: dormId,
                 rating: rating,
+                room_rating: room_rating,
+                location_rating: location_rating,
+                bathroom_rating: bathroom_rating,
                 comment: comment,
             });
+            
             onClose();
         } catch (error) {
             console.error('Error submitting review', error);
@@ -41,6 +46,7 @@ const WriteReview = ({ dormId, onClose }) => {
                     <StarRating label='Rating' rating={rating} onRatingChange={handleRatingChange} />
                     <StarRating label='Room Rating' rating={room_rating} onRatingChange={setRoomRating} />
                     <StarRating label='Location Rating' rating={location_rating} onRatingChange={setLocationRating} />
+                    <StarRating label='Bathroom Rating' rating={bathroom_rating} onRatingChange={setBathroomRating} />
                     <Form.Group controlId="formComment">
                         <Form.Label>Comment</Form.Label>
                         <Form.Control

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { ListGroup, Button, Card, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axiosInstance from '../axiosConfig';
+import Stars from './Stars';
+
 
 const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -37,6 +39,11 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
                         <small>{review.username} - {review.fullName}</small>
                     </>
                 )}
+                <Stars rating={review.rating} label='Rating' />
+                <Stars rating={review.room_rating} label='Room rating' />
+                <Stars rating={review.location_rating} label='Location rating' />
+                <Stars rating={review.bathroom_rating} label='Bathroom rating' />
+               
             </Card.Body>
             <Card.Footer className="d-flex justify-content-end">
                 {( (userName === review.username || userRole === 'admin') && !isEditing ) && (
