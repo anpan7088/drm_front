@@ -4,8 +4,12 @@ import { Modal, Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import StarRating from './StarRating';
 
+// Write a review for a dorm
+// TODO: Add validation
 const WriteReview = ({ dormId, onClose }) => {
     const [rating, setRating] = useState(0);
+    const [room_rating, setRoomRating] = useState(0);
+    const [location_rating, setLocationRating] = useState(0);
     const [comment, setComment] = useState();
 
     const handleRatingChange = (newRating) => {
@@ -35,6 +39,8 @@ const WriteReview = ({ dormId, onClose }) => {
             <Form onSubmit={handleSubmit}>
                 <Modal.Body>
                     <StarRating label='Rating' rating={rating} onRatingChange={handleRatingChange} />
+                    <StarRating label='Room Rating' rating={room_rating} onRatingChange={setRoomRating} />
+                    <StarRating label='Location Rating' rating={location_rating} onRatingChange={setLocationRating} />
                     <Form.Group controlId="formComment">
                         <Form.Label>Comment</Form.Label>
                         <Form.Control

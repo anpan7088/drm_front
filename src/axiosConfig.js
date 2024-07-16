@@ -11,12 +11,12 @@ import { removeCredentials } from './context/localStorage'
 const axiosInstance = axios.create({
     baseURL: 'https://dorms.sman.cloud/api', // Your API base URL (for production)
     // baseURL: 'http://localhost:8086', 
-    // baseURL: '/api',
     headers: {
         'Content-Type': 'application/json',
         // Add other default headers if needed
     },
 });
+
 
 // this interceptor will automatically attach the token to the request headers
 axiosInstance.interceptors.request.use((config) => {

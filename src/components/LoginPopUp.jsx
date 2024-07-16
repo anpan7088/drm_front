@@ -1,4 +1,6 @@
+import React from 'react';
 import { useState } from 'react';
+
 import axiosInstance from '../axiosConfig';
 import { Form, Button, Modal } from 'react-bootstrap';
 
@@ -91,6 +93,7 @@ const LoginPopUp = ({ show, handleClose }) => {
 // ChatGPT za pojasno da ti bide 
 // Explain the following code:
 import PropTypes from 'prop-types';
+import ReactJson from 'react-json-view';
 LoginPopUp.propTypes = {
     show: PropTypes.bool.isRequired,
     handleClose: PropTypes.func.isRequired

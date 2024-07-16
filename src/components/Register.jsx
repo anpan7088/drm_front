@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Form, Button, Container } from 'react-bootstrap';
+// import ReactJson from 'react-json-view';
+
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -69,7 +71,7 @@ const Register = () => {
                         required
                     />
                 </Form.Group>
-
+{/* <ReactJson src={formData} /> */}
                 <Button variant="primary" type="submit">
                     Register
                 </Button>
