@@ -27,7 +27,8 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
                     <Form>
                         <Form.Group controlId="formComment">
                             <Form.Control
-                                type="text"
+                                as="textarea"
+                                rows={3}
                                 value={editedComment}
                                 onChange={(e) => setEditedComment(e.target.value)}
                             />
