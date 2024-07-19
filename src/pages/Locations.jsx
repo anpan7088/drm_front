@@ -46,13 +46,13 @@ const Locations = () => {
                         <Marker
                             key={location.id}
                             name={location.name}
-                            position={{ lat: 46.163207, lng: 14.101245 }}
+                            position={{ lat: location.lat, lng: location.lng }}
                             onClick={handleMarkerClick}
                         />
+
                     ))}
                 </Map>
             </APIProvider>
-            <ReactJson src={locations} />
         </div>
     );
 };
