@@ -16,6 +16,7 @@ import DormReviewManagement from "./pages/DormReviewManagement";
 import DormPage from "./pages/DormPage";
 import Footer from "./components/Footer";
 import Carusels from './pages/Carusels';
+import Locations from './pages/Locations';
 
 const router = createBrowserRouter([
     {   path: "contact",
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
     },
     {   path: "profile",
         element: <Profile />,
+    },
+    {
+        path: "locations",
+        element: <Locations />,
     },
     {   path: "dorms",
         element: <DormsManagement />,
