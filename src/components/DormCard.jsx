@@ -1,10 +1,11 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, Carousel, ListGroup, Button } from 'react-bootstrap';
 import axiosInstance from '../axiosConfig';
 import WriteReview from './WriteReview';
 import PropTypes from 'prop-types';
 
 import DormReviews from './DormReviews';
+import LocationButton from './MapsButton';
 
 const DormCard = ({ dormID }) => {
     const [dorm, setDorm] = useState(null);
@@ -68,6 +69,10 @@ const DormCard = ({ dormID }) => {
                         <Button variant="primary" onClick={handleWriteReview}>
                             Write a Review
                         </Button>
+                        {/* Show location button if lat and lng are present */}
+                        { dorm.lat && dorm.lng && 
+                            <LocationButton location={{ lat: dorm.lat, lng: dorm.lng }} title={"Location"} /> 
+                        }
                     </Card.Footer>
                 </>
             )}
