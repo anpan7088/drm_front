@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, Button, Badge, Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import ImageCarusel from './ImageCarusel';
-// import ReactJson from 'react-json-view'
+import MapsButton from './MapsButton';
 
 
 const SmallDormCard = ({ dorm, carusels }) => {
@@ -30,6 +30,7 @@ const SmallDormCard = ({ dorm, carusels }) => {
                 <Badge pill bg="primary">
                     {dorm.avg_rating} ★
                 </Badge>
+                <MapsButton location={{ lat: dorm.lat, lng: dorm.lng }} title={"OnMap"} />
                 <Button variant="primary" onClick={handleClick}>View</Button>
             </Card.Footer>
         </Card>

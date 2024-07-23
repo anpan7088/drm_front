@@ -19,3 +19,5 @@ const MapsButton = (props) => {
 
 export default MapsButton;
 
+// the PropTypes are intentionally not used here.
+// They are used in the DormCard.jsx file.
