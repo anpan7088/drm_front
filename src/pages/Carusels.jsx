@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Row, Col } from 'react-bootstrap';
 import SmallDormCardCarusel from '../components/SmallDormCardCarusel';
+import DormCardHover from '../components/DormCardHover';
 
 const Carusels = () => {
     const [topDorms, setTopDorms] = useState([]);
@@ -9,6 +10,7 @@ const Carusels = () => {
     useMemo(() => {
         // Fetch top dorms
         axiosInstance.get('/dorms/top-dorms-with-images/400')
+        // axiosInstance.get('/dorms')
             .then(response => {
                 setTopDorms(response.data);
             })
@@ -24,6 +26,7 @@ const Carusels = () => {
                 {topDorms.map((dorm) => (
                     <Col key={dorm.id} sm={6} md={4} lg={3}>
                         <SmallDormCardCarusel dorm={dorm} />
+                        {/* <DormCardHover dorm={dorm} /> */}
                     </Col>
                 ))}
             </Row>

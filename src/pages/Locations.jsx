@@ -39,31 +39,41 @@ const Locations = () => {
 
     return (
         <div className="locations-container">
-            <APIProvider apiKey={API_KEY}>
-                <Map
-                    style={{ width: '1024px', height: '768px' }}
-                    defaultCenter={{ lat: 46.17502993958369, lng: 15.023888406730292 }}
-                    defaultZoom={8.5}
-                    gestureHandling={'greedy'}
-                    disableDefaultUI={true}
-                    // onClick={handleLocationClick}
-                >
-                    {locations.map((location) => (
-                        <Marker
-                            key={location.id}
-                            name={location.name}
-                            position={{ lat: location.lat, lng: location.lng }}
-                            onClick={() => handleMarkerClick(location)}
-                            onMouseOver={() => handleMarkerMouseOver(location)}
-                            onMouseOut={handleMarkerMouseOut}
+            <div class="row">
+                <div class="col-md-6">
+                    <div className="map-container">
+                        <APIProvider apiKey={API_KEY}>
+                            <Map
+                                style={{ width: '1024px', height: '768px' }}
+                                defaultCenter={{ lat: 46.17502993958369, lng: 15.023888406730292 }}
+                                defaultZoom={8.5}
+                                gestureHandling={'greedy'}
+                                disableDefaultUI={true}
                             >
-                            {hoveredDorm && hoveredDorm.id === location.id && (
-                                <DormCardHover dorm={hoveredDorm} />
-                            )} 
-                        </Marker>
-                    ))}
-                </Map>
-            </APIProvider>
+                                {locations.map((location) => (
+                                        <Marker
+                                            key={location.id}
+                                            name={location.name}
+                                            position={{ lat: location.lat, lng: location.lng }}
+                                            onClick={() => handleMarkerClick(location)}
+                                            onMouseOver={() => handleMarkerMouseOver(location)}
+                                            onMouseOut={handleMarkerMouseOut}
+                                        >
+                                        </Marker>
+                                ))}
+                            </Map>
+                            {/* <ReactJson src={hoveredDorm} /> */}
+                        </APIProvider>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div className="dorm-container">
+                        {hoveredDorm && (
+                            <DormCardHover dorm={hoveredDorm} />
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

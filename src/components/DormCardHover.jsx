@@ -11,15 +11,15 @@ const DormCardHover = ({ dorm }) => {
     };
 
     return (
-        <Card className="dorm-card-hover" style={{ width: '18rem' }}>
+        <Card className="dorm-card-hover">
             <Carousel variant="top" className='small-dorm-card-carusel'>
                 {dorm.images.map((image, index) => (
                     <Carousel.Item key={index}>
                         <Image 
-                            src={`${dorm.baseImageUrl}${image.url}`} 
+                            src={`${image}`} 
                             alt={`Dorm Image ${index + 1}`} 
                             fluid 
-                            style={{ maxHeight: '200px', objectFit: 'cover' }} 
+                            style={{ maxHeight: '160px', objectFit: 'cover' }} 
                         />
                     </Carousel.Item>
                 ))}
