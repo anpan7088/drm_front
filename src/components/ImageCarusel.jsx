@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button, Badge, Carousel } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
 // import ReactJson from 'react-json-view'
 
 

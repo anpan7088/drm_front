@@ -1,0 +1,16 @@
+.dorm-card-hover {
+    width: 300px;
+    z-index: 0;
+    .carousel-item img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .card-body {
+        padding: 10px;
+    }
+    .card-footer {
+        padding: 10px;
+        background-color: #f8f9fa;
+    }
+}

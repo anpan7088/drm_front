@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, Badge, Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import ImageCarusel from './ImageCarusel';
 import MapsButton from './MapsButton';
 
 
-const SmallDormCard = ({ dorm, carusels }) => {
+const SmallDormCard = ({ dorm }) => {
     // hook from react router v6
     const navigate = useNavigate();
 

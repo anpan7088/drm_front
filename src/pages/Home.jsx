@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Row, Col, CardGroup } from 'react-bootstrap';
-import DormCard from '../components/DormCard';
-import TopDorms from '../components/TopDorms';
 import SmallDormCard from '../components/SmallDormCard';
 
 
