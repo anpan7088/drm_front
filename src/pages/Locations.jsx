@@ -47,8 +47,8 @@ const Locations = () => {
 
     return (
         <div className="locations-container">
-            <div class="row">
-                <div class="col-md-8">
+            <div className="row">
+                <div className="col-md-8">
                     <div className="map-container">
                         <APIProvider apiKey={API_KEY}>
                             <Map
@@ -74,7 +74,7 @@ const Locations = () => {
                         </APIProvider>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div className="col-md-4">
                     <div className="dorm-container">
                         {hoveredDorm && (
                             <DormCardHover dorm={hoveredDorm} />

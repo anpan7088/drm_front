@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 
 // mouse position hook, 
 // usefful for geting the mouse position
-function useMousePosition() {
+function useMousePosition(defaultPosition) {
     // stariting position with negative values to avoid flickering at the start
-    const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
+    const [mousePosition, setMousePosition] = useState(defaultPosition);
 
     useEffect(() => {
         const updateMousePosition = (event) => {

@@ -6,7 +6,8 @@ import useMousePosition from '../hooks/useMousePosition';
 
 
 const DormCardHover = ({ dorm }) => {
-    const mousePosition = useMousePosition();
+    // starting position with negative values to avoid flickering at the start
+    const mousePosition = useMousePosition({ x: -1000, y: -1000 });
     const navigate = useNavigate();
 
     return (
