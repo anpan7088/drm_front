@@ -4,7 +4,15 @@ import axiosInstance from '../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import DormCardHover from '../components/DormCardHover';
 
-
+// API key for Google Maps
+// keeping this key like this in code has significant security issues
+// it should be stored in .env file or something similar
+// but for now I'm just going to leave it here
+//
+// Posible solutions:
+//   1. Use dotenv file on the server and have the client read it from there
+//   2. Statically genereated map on the server and have the client download it.
+//   3. Use a third party service like Mapbox, OpenStreet maps or something similar
 const API_KEY = 'AIzaSyB2qqvsS9-CouAIUs6x7uxzYgmF5oEVO38';
 
 const Locations = () => {
@@ -51,15 +59,15 @@ const Locations = () => {
                                 disableDefaultUI={true}
                             >
                                 {locations.map((location) => (
-                                        <Marker
-                                            key={location.id}
-                                            name={location.name}
-                                            position={{ lat: location.lat, lng: location.lng }}
-                                            onClick={() => handleMarkerClick(location)}
-                                            onMouseOver={() => handleMarkerMouseOver(location)}
-                                            onMouseOut={handleMarkerMouseOut}
-                                        >
-                                        </Marker>
+                                    <Marker
+                                        key={location.id}
+                                        name={location.name}
+                                        position={{ lat: location.lat, lng: location.lng }}
+                                        onClick={() => handleMarkerClick(location)}
+                                        onMouseOver={() => handleMarkerMouseOver(location)}
+                                        onMouseOut={handleMarkerMouseOut}
+                                    >
+                                    </Marker>
                                 ))}
                             </Map>
                             {/* <ReactJson src={hoveredDorm} /> */}
