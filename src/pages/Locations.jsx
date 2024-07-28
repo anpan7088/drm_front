@@ -3,7 +3,7 @@ import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import axiosInstance from '../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import DormCardHover from '../components/DormCardHover';
-import ReactJson from 'react-json-view';
+
 
 const API_KEY = 'AIzaSyB2qqvsS9-CouAIUs6x7uxzYgmF5oEVO38';
 
@@ -40,7 +40,7 @@ const Locations = () => {
     return (
         <div className="locations-container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div className="map-container">
                         <APIProvider apiKey={API_KEY}>
                             <Map
@@ -66,7 +66,7 @@ const Locations = () => {
                         </APIProvider>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div className="dorm-container">
                         {hoveredDorm && (
                             <DormCardHover dorm={hoveredDorm} />
