@@ -32,10 +32,12 @@ const Locations = () => {
             });
     }, []);
 
+    // Handle marker click
     const handleMarkerClick = (location) => {
         navigator(`/dorm/${location.id}`);
         console.log(location);
     };
+
 
     const handleMarkerMouseOver = async (location) => {
         setHoveredDorm(location);
@@ -74,13 +76,9 @@ const Locations = () => {
                         </APIProvider>
                     </div>
                 </div>
-                <div className="col-md-4">
-                    <div className="dorm-container">
-                        {hoveredDorm && (
-                            <DormCardHover dorm={hoveredDorm} />
-                        )}
-                    </div>
-                </div>
+                {hoveredDorm && (
+                    <DormCardHover dorm={hoveredDorm} />
+                )}
             </div>
         </div>
     );

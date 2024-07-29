@@ -16,23 +16,14 @@ const DormCardHover = ({ dorm }) => {
                 position: 'absolute',
                 top: `${mousePosition.y}px`,
                 left: `${mousePosition.x}px`,
-                zIndex: 1000,
-                width: '300px',
                 pointerEvents: 'none' // Makes the card non-interactive
             }}
         >
-            <Carousel variant="top" className='small-dorm-card-carusel'>
-                {dorm.images.map((image, index) => (
-                    <Carousel.Item key={index}>
-                        <Image
-                            src={`${image}`}
-                            alt={`Dorm Image ${index + 1}`}
-                            fluid
-                            style={{ maxHeight: '160px', objectFit: 'cover' }}
-                        />
-                    </Carousel.Item>
-                ))}
-            </Carousel>
+            <Card.Img className="card-img"
+                variant="top"
+                src={`${dorm.images[0]}`}
+                alt="Dorm Image"
+            />
             <Card.Body>
                 <Card.Title>{dorm.name}</Card.Title>
                 <Card.Text>
