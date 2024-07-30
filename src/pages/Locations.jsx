@@ -68,8 +68,7 @@ const Locations = () => {
                                         onClick={() => handleMarkerClick(location)}
                                         onMouseOver={() => handleMarkerMouseOver(location)}
                                         onMouseOut={handleMarkerMouseOut}
-                                    >
-                                    </Marker>
+                                    />
                                 ))}
                             </Map>
                             {/* <ReactJson src={hoveredDorm} /> */}

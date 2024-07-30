@@ -15,8 +15,9 @@ const SmallDormCard = ({ dorm }) => {
 
     return (
         <Card className="small-dorm-card">
-            <Card.Img className="small-dorm-card-img" style={{height: '300px'}} variant="top" src={dorm.images[0].url} alt="Dorm Image" onClick={handleClick}/>
-            {/* <ReactJson src={dorm} /> */}
+            { dorm.images[0] &&
+                <Card.Img className="small-dorm-card-img" style={{height: '300px'}} variant="top" src={dorm.images[0].url} alt="Dorm Image" onClick={handleClick}/>
+            }
             <Card.Body>
                 <Card.Title>{dorm.name}</Card.Title>
                 <Card.Text>
