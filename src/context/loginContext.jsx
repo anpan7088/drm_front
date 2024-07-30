@@ -5,7 +5,7 @@ import { initialState, removeCredentials, storeCredentials } from './localStorag
 import LoginPopUp from '../components/LoginPopUp';
 
 const LoginContext = createContext();
-// #mkd ne znam zo[to voa glupoto eslint se bune za toa e slednata linia da ne me nervira :D]
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const useLoginContext = () => useContext(LoginContext);
 
@@ -14,12 +14,12 @@ export const LoginProvider = ({ children }) => {
     const [isLoginVisible, setIsLoginVisible] = useState(false);
 
     const login = (userID, userName, fullName, userRole, token) => {
-        setUserData( {userID, userName, fullName, userRole, token });
-        storeCredentials ( { userID, userName, fullName, userRole, token });
+        setUserData({ userID, userName, fullName, userRole, token });
+        storeCredentials({ userID, userName, fullName, userRole, token });
     };
 
     const logout = () => {
-        setUserData( {userID: null, userName: '', fullName: '', userRole: null, token: null });
+        setUserData({ userID: null, userName: '', fullName: '', userRole: null, token: null });
         removeCredentials();
     };
 
@@ -27,12 +27,12 @@ export const LoginProvider = ({ children }) => {
     const hideLogin = () => setIsLoginVisible(false);
 
     return (
-        <LoginContext.Provider 
-                        value = {{ 
-                                ...userData,   // { userID, userName, fullName, userRole, token } 
-                                login, logout,  // functions for login and logout
-                                showLogin, hideLogin  // this can be optimized ??? may be
-                                }}>
+        <LoginContext.Provider
+            value={{
+                ...userData,   // { userID, userName, fullName, userRole, token } 
+                login, logout,  // functions for login and logout
+                showLogin, hideLogin  // this can be optimized ??? may be
+            }}>
             {children}
             <LoginPopUp show={isLoginVisible} handleClose={hideLogin} />
         </LoginContext.Provider>
@@ -40,7 +40,7 @@ export const LoginProvider = ({ children }) => {
 };
 
 LoginProvider.propTypes = {
-    children: PropTypes.node 
+    children: PropTypes.node
 };
 
 export default LoginContext;

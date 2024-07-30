@@ -42,40 +42,6 @@ body {
 // @import "node_modules/bootstrap/scss/bootstrap";
 // @import "bootswatch/sketchy/bootswatch";  
 
-// Spacelab theme
-// @import "bootswatch/spacelab/variables"; 
-// @import "node_modules/bootstrap/scss/bootstrap";
-// @import "bootswatch/spacelab/bootswatch";  
-
-// Flatly
-// @import "bootswatch/flatly/variables"; 
-// @import "node_modules/bootstrap/scss/bootstrap";
-// @import "bootswatch/flatly/bootswatch";  
-
-// Morph theme
-// @import "bootswatch/morph/variables"; 
-// @import "node_modules/bootstrap/scss/bootstrap";
-// @import "bootswatch/morph/bootswatch";  
-
-// cyborg theme
-// @import "bootswatch/cyborg/variables"; 
-// @import "node_modules/bootstrap/scss/bootstrap";
-// @import "bootswatch/cyborg/bootswatch";  
-
-
-// Define your custom color palette
-// $theme-colors: (
-//     "primary": #6e827c,
-//     "secondary": #118f65,
-//     "success": #28a745,
-//     "info": #17a2b8,
-//     "warning": #ffc107,
-//     "danger": #da283a,
-//     "light": #dfe6ec,
-//     "dark": #343a40,
-//     "custom-color": #277255
-// );
-
 
 // Import all styles for the components
 @import "footer";    // import _footer.scss
