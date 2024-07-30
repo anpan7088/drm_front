@@ -54,9 +54,9 @@ const Locations = () => {
                     <div className="map-container">
                         <APIProvider apiKey={API_KEY}>
                             <Map
-                                style={{ width: '1024px', height: '768px' }}
+                                style={{ width: '1300px', height: '880px' }}
                                 defaultCenter={{ lat: 46.17502993958369, lng: 15.023888406730292 }}
-                                defaultZoom={8.5}
+                                defaultZoom={9}
                                 gestureHandling={'greedy'}
                                 disableDefaultUI={true}
                             >
