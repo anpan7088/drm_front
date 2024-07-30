@@ -1,25 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Card  } from 'react-bootstrap';
-import useMousePosition from '../hooks/useMousePosition';
-import ReactJson from 'react-json-view';
-import useWindowSize from '../hooks/useWindowSize';
-
 // this is a hovered dorm card for overlay on the map
 // it is used to display the dorm info on the map when the user hovers over the marker
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
+import useMousePosition from '../hooks/useMousePosition';
+import useWindowSize from '../hooks/useWindowSize';
+
 
 const DormCardHover = ({ dorm }) => {
-
+    const cardRef = useRef(null);
+    const [cardSize, setCardSize] = useState({ width: 300, height: 300 });
     // starting position with negative values to avoid flickering at the start
-    const mousePosition = useMousePosition({ x: -1000, y: -1000 });
-    const cardSize = useWindowSize();  // window size for avoid to card popup over the window
+    const mouseCord = useMousePosition({ x: -1000, y: -1000 });
+    const winSize = useWindowSize();  // window size used to avoid to card popup over the window
+    const [ cordX, setCordX ] = useState( mouseCord.x);
+    const [ cordY, setCordY ] = useState( mouseCord.y);
+
+
+    const updateSize = () => {
+        if (cardRef.current) {
+            // cardRef.current gives direct access to the underlying DOM node.
+            setCardSize({
+                width: cardRef.current.offsetWidth,
+                height: cardRef.current.offsetHeight,
+            });
+        }
+    }
+
+    useEffect(() => {
+        updateSize();
+        // Update size on window resize
+        window.addEventListener('resize', updateSize);
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', updateSize);
+        };
+    }, [cardSize]);
+
+    useMemo(() => {
+        setCordX(mouseCord.x);
+        setCordY(mouseCord.y);
+        if ((mouseCord.x + cardSize.width) > winSize.width) {
+            setCordX( winSize.width - cardSize.width);
+        };
+        if ((mouseCord.y + cardSize.height) > winSize.height) {
+            setCordY(winSize.height - cardSize.height);
+        };
+    }, [mouseCord]);
+
 
     return (
-        <Card className="dorm-card-hover"
+        <Card ref={cardRef} className="dorm-card-hover"
             style={{
                 position: 'absolute',
-                top: `${mousePosition.y}px`,
-                left: `${mousePosition.x}px`,
+                top: `${cordY}px`,
+                left: `${cordX}px`,
                 pointerEvents: 'none' // Makes the card non-interactive
             }}
         >
@@ -35,7 +70,6 @@ const DormCardHover = ({ dorm }) => {
                     <br />
                     {dorm.city}
                 </Card.Text>
-                <ReactJson src={cardSize} />
             </Card.Body>
         </Card>
     );
@@ -47,31 +81,3 @@ DormCardHover.propTypes = {
 };
 
 export default DormCardHover;
-
-// Here is some variat from ChatGPT code, with addition to avoidiing out of the screen positioning
-//
-// const useMousePosition = () => {
-//     const [position, setPosition] = useState({ x: 0, y: 0 });
-
-//     useEffect(() => {
-//         const handleMouseMove = (e) => {
-//             const { clientX, clientY, view } = e;
-//             const { innerWidth, innerHeight } = view;
-//             const cardWidth = 300; // approximate width of the card
-//             const cardHeight = 400; // approximate height of the card
-
-//             // Adjust position to keep the card within the viewport
-//             const x = clientX + cardWidth > innerWidth ? clientX - cardWidth : clientX;
-//             const y = clientY + cardHeight > innerHeight ? clientY - cardHeight : clientY;
-
-//             setPosition({ x, y });
-//         };
-
-//         window.addEventListener('mousemove', handleMouseMove);
-//         return () => {
-//             window.removeEventListener('mousemove', handleMouseMove);
-//         };
-//     }, []);
-
-//     return position;
-// };
