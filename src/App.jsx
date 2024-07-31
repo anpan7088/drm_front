@@ -11,7 +11,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Register from "./components/Register";
 import Profile from "./pages/UserProfile";
-import DormsManagement from "./pages/DormsManage";
+import DormsManagement from "./pages/DormsManagement";
 import DormReviewManagement from "./pages/DormReviewManagement";
 import DormPage from "./pages/DormPage";
 import Footer from "./components/Footer";
