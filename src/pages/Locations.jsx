@@ -3,6 +3,7 @@ import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import axiosInstance from '../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import DormCardHover from '../components/DormCardHover';
+import { Overlay } from 'react-bootstrap';
 
 // API key for Google Maps
 // keeping this key like this in code has significant security issues
@@ -61,14 +62,20 @@ const Locations = () => {
                                 disableDefaultUI={true}
                             >
                                 {locations.map((location) => (
-                                    <Marker
-                                        key={location.id}
-                                        name={location.name}
-                                        position={{ lat: location.lat, lng: location.lng }}
-                                        onClick={() => handleMarkerClick(location)}
-                                        onMouseOver={() => handleMarkerMouseOver(location)}
-                                        onMouseOut={handleMarkerMouseOut}
-                                    />
+                                        <Marker
+                                            key={location.id}
+                                            name={location.name}
+                                            position={{ lat: location.lat, lng: location.lng }}
+                                            onClick={() => handleMarkerClick(location)}
+                                            onMouseOver={() => handleMarkerMouseOver(location)}
+                                            onMouseOut={handleMarkerMouseOut}
+                                            icon={{
+                                                url: '/drm.svg', // Custom icon URL
+                                                scaledSize: new window.google.maps.Size(30, 30), // Scale the icon
+                                                caption:"Title for tooltip"
+                                            }}
+                                        >
+                                        </Marker>    
                                 ))}
                             </Map>
                             {/* <ReactJson src={hoveredDorm} /> */}
