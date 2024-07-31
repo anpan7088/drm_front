@@ -3,21 +3,15 @@
 // shoudbe visble only wen user is logged in and is an admin
 import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
-import { Container, Form, Button, Table, Modal } from 'react-bootstrap';
-
+import { Container, Button, Table } from 'react-bootstrap';
 import Alert from '../components/Alert';
-import CityAutocomplete from '../components/CityAutocomplete';
 import WriteReview from '../components/WriteReview';
 import DormImages from '../components/DormImages';
+import DormEdit from '../components/DormEdit';
 
 const DormsManagement = () => {
     const [dorms, setDorms] = useState([]);
-    const [formData, setFormData] = useState({
-        name: '',
-        address: '',
-        city: '',
-    });
-    const [editingId, setEditingId] = useState(null);
+    const [editingDorm, setEditingDorm] = useState(null);
     const [alert, setAlert] = useState(null);
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [reviewDormId, setReviewDormId] = useState(null);
@@ -28,24 +22,22 @@ const DormsManagement = () => {
     const handleImgShow = (dorm_id) => {
         setImageDormId(dorm_id);
         setShowImgModal(true);
-    }
+    };
     const handleImgClose = () => {
         setShowImgModal(false);
         setImageDormId(null);
-    }
+    };
 
     // edit modal
     const [showEditModal, setShowEditModal] = useState(false);
     const handleEditShow = (dorm) => {
-        setFormData({ name: dorm.name, address: dorm.address, city: dorm.city });
-        setEditingId(dorm.id);
+        setEditingDorm(dorm);
         setShowEditModal(true);
-    }
+    };
     const handleEditClose = () => {
         setShowEditModal(false);
-        setFormData({ name: '', address: '', city: '' });
-        setEditingId(null);
-    }
+        setEditingDorm(null);
+    };
 
     useEffect(() => {
         fetchDorms();
@@ -60,33 +52,17 @@ const DormsManagement = () => {
         }
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
-    const handleCityChange = (city) => {
-        setFormData({
-            ...formData,
-            city: city,
-        });
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (formData) => {
         try {
-            if (editingId) {
-                await axiosInstance.patch(`/dorms/${editingId}`, formData);
+            if (editingDorm) {
+                await axiosInstance.patch(`/dorms/${editingDorm.id}`, formData);
                 setAlert({ message: 'Dorm updated successfully', variant: 'success' });
             } else {
                 await axiosInstance.post('/dorms', formData);
                 setAlert({ message: 'Dorm added successfully', variant: 'success' });
             }
             fetchDorms();
-            handleEditClose(); // Close the modal after submission
+            handleEditClose();
         } catch (error) {
             setAlert({ message: 'Error saving dorm: ' + error.response.data.error, variant: 'danger' });
             console.error(error);
@@ -137,7 +113,7 @@ const DormsManagement = () => {
                             <td>{dorm.name}</td>
                             <td>{dorm.address}</td>
                             <td>{dorm.city}</td>
-                            <td className='d-flex  justify-content-around'>
+                            <td className='d-flex justify-content-around'>
                                 <Button variant="warning" onClick={() => handleEditShow(dorm)}>
                                     Edit
                                 </Button>
@@ -170,48 +146,12 @@ const DormsManagement = () => {
                     onClose={handleCloseReviewForm}
                 />
             )}
-            <Modal show={showEditModal} onHide={handleEditClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{editingId ? 'Edit Dorm' : 'Add Dorm'}</Modal.Title>
-                </Modal.Header>
-                <Form onSubmit={handleSubmit}>
-                    <Modal.Body>
-                        <Form.Group controlId="formName">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <Form.Group controlId="formAddress">
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="address"
-                                value={formData.address}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <CityAutocomplete
-                            value={formData.city}
-                            onChange={(city) => setFormData({ ...formData, city })}
-                            onSelect={handleCityChange}
-                        />
-
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit">
-                            {editingId ? 'Update Dorm' : 'Add Dorm'}
-                        </Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal>
+            <DormEdit
+                show={showEditModal}
+                onHide={handleEditClose}
+                onSubmit={handleSubmit}
+                dorm={editingDorm}
+            />
         </Container>
     );
 };

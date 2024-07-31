@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import CityAutocomplete from '../components/CityAutocomplete';
+import ReactJson from 'react-json-view';
 
 const DormEdit = ({ show, onHide, onSubmit, dorm }) => {
     const [formData, setFormData] = useState({
         name: '',
         address: '',
         city: '',
+        lat: '',
+        lng: '',
     });
 
     useEffect(() => {
         if (dorm) {
-            setFormData({ name: dorm.name, address: dorm.address, city: dorm.city });
+            setFormData({ name: dorm.name, address: dorm.address, city: dorm.city, lat: dorm.lat, lng: dorm.lng });
         } else {
-            setFormData({ name: '', address: '', city: '' });
+            setFormData({ name: '', address: '', city: '', lat: '', lng: '' });
         }
     }, [dorm]);
 
@@ -71,6 +74,27 @@ const DormEdit = ({ show, onHide, onSubmit, dorm }) => {
                         onChange={(city) => setFormData({ ...formData, city })}
                         onSelect={handleCityChange}
                     />
+
+                    <Form.Group controlId="formLat">
+                        <Form.Label>Latitude</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="lat"
+                            value={formData.lat}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="formLng">
+                        <Form.Label>Longitude</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="lng"
+                            value={formData.lng}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" type="submit">
