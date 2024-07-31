@@ -35,6 +35,27 @@ const DormEdit = ({ show, onHide, onSubmit, dorm }) => {
         });
     };
 
+    // handle location change
+    // coma separated values are splited on  lat, lng and set as lat, lng
+    // copy cordinates from google maps and paste them in the input field
+    const handleLocationChange = (e) => {
+        const value = e.target.value;
+        if (value.includes(',')) {
+            const [lat, lng] = value.split(',').map(coord => coord.trim());
+            setFormData({
+                ...formData,
+                lat: lat,
+                lng: lng,
+            });
+        } else {
+            const { name } = e.target;
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit(formData);
@@ -75,23 +96,20 @@ const DormEdit = ({ show, onHide, onSubmit, dorm }) => {
                         onSelect={handleCityChange}
                     />
 
-                    <Form.Group controlId="formLat">
+                    <Form.Group controlId="formLocation">
                         <Form.Label>Latitude</Form.Label>
                         <Form.Control
                             type="text"
                             name="lat"
                             value={formData.lat}
-                            onChange={handleChange}
+                            onChange={handleLocationChange}
                         />
-                    </Form.Group>
-
-                    <Form.Group controlId="formLng">
                         <Form.Label>Longitude</Form.Label>
                         <Form.Control
                             type="text"
                             name="lng"
                             value={formData.lng}
-                            onChange={handleChange}
+                            onChange={handleLocationChange}
                         />
                     </Form.Group>
 
