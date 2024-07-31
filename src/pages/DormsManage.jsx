@@ -1,3 +1,6 @@
+// DormsManagement.js
+// htis is the dorm managment page
+// shoudbe visble only wen user is logged in and is an admin
 import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Form, Button, Table, Modal } from 'react-bootstrap';
