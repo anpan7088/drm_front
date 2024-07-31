@@ -69,11 +69,11 @@ const Locations = () => {
                                             onClick={() => handleMarkerClick(location)}
                                             onMouseOver={() => handleMarkerMouseOver(location)}
                                             onMouseOut={handleMarkerMouseOut}
-                                            // icon={{
-                                            //     url: '/home.png', // Custom icon URL
-                                            //     scaledSize: new window.google.maps.Size(30, 30), // Scale the icon
-                                            //     caption:"Title for tooltip"
-                                            // }}
+                                            icon={{ // changing standard marker icon to custom one
+                                                url: '/drm.svg', // Custom icon URL
+                                                scaledSize: new window.google.maps.Size(30, 30), // Scale the icon
+                                                caption:"Title for tooltip"
+                                            }}
                                         >
                                         </Marker>    
                                 ))}
