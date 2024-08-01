@@ -1,3 +1,4 @@
+// App.js
 import { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Button, Container } from 'react-bootstrap'
@@ -18,6 +19,7 @@ import Footer from "./components/Footer";
 import Carusels from './pages/Carusels';
 import Locations from './pages/Locations';
 
+// Create a router object, which is an object that contains all the routes
 const router = createBrowserRouter([
     {   path: "contact",
         element: <Contact />,
@@ -53,10 +55,8 @@ const router = createBrowserRouter([
     
 ]);
 
-
+// The App component is the root component of the application
 function App() {
-    const [count, setCount] = useState(0)
-
     return (
         <div className='app'>
             <Topbar />
