@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
-import { Card, Carousel, ListGroup, Button } from 'react-bootstrap';
+// src/components/DormCard.jsx
+import React, { useState, useEffect } from 'react';
+import { Card, Carousel, Button } from 'react-bootstrap';
 import axiosInstance from '../axiosConfig';
 import WriteReview from './WriteReview';
 import PropTypes from 'prop-types';
@@ -7,6 +8,9 @@ import PropTypes from 'prop-types';
 import DormReviews from './DormReviews';
 import LocationButton from './MapsButton';
 
+// component for the dorm card, this is the maiin component for large dorm card
+// with images carousel and dorm reviews
+// dormID is the dorm id
 const DormCard = ({ dormID }) => {
     const [dorm, setDorm] = useState(null);
     const [photos, setPhotos] = useState([]);
@@ -14,25 +18,31 @@ const DormCard = ({ dormID }) => {
     const [photosBaseUrl, setPhotosBaseUrl] = useState('');
     const [refresh, setRefresh] = useState(false);
 
-    useMemo(async () => {
-        try {
-            const dormResponse = await axiosInstance.get(`/dorms/${dormID}`);
-            setDorm(dormResponse.data);
+    // useEffect hook to fetch dorm details and photos
+    // this is called when the dormID changes
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const dormResponse = await axiosInstance.get(`/dorms/${dormID}`);
+                setDorm(dormResponse.data);
 
-            const photosResponse = await axiosInstance.get(`/dorms/${dormID}/images`);
-            setPhotos(photosResponse.data.data);
-            setPhotosBaseUrl(photosResponse.data.baseUrl);
+                const photosResponse = await axiosInstance.get(`/dorms/${dormID}/images`);
+                setPhotos(photosResponse.data.data);
+                setPhotosBaseUrl(photosResponse.data.baseUrl);
+            } catch (error) {
+                console.error('Error fetching dorm details:', error);
+            }
+        };
 
-        } catch (error) {
-            console.error('Error fetching dorm details:', error);
-        }
+        fetchData();
     }, [dormID]);
 
-
+    // function to handle writing review
     const handleWriteReview = () => {
         setShowReviewForm(true);
     };
 
+    // function to handle closing review form
     const handleCloseReviewForm = () => {
         setShowReviewForm(false);
         setRefresh(!refresh);
@@ -83,7 +93,8 @@ const DormCard = ({ dormID }) => {
     );
 };
 
+// Prop types for the component
 DormCard.propTypes = {
-    dormID: PropTypes.number,
+    dormID: PropTypes.number,  // Assuming dormID is a number
 };
 export default DormCard;

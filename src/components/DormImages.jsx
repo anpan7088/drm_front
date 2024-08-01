@@ -1,27 +1,34 @@
+// src/components/DormImages.jsx
 import { useState, useMemo } from 'react';
 import { Modal, Button, Form, ListGroup } from 'react-bootstrap';
 import axiosInstance from '../axiosConfig';
 
+// Popup for displaying and managing images from the dorm
+// dormId: is the dorm id
+// onClose: is the function to close the modal
 const DormImages = ({ dormId, onClose }) => {
     const [images, setImages] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagesBaseUrl, setImagesBaseUrl] = useState('');
     const [reload, setReload] = useState(false);
 
-// hook for fetching images for the dorm
-    useMemo( async () => {
-        // Fetch existing images for the dorm
-        await axiosInstance.get(`/dorms/${dormId}/images`)
-            .then(response => {
+    // hook for fetching images for the dorm
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                const response = await axiosInstance.get(`/dorms/${dormId}/images`);
                 setImagesBaseUrl(response.data.baseUrl);
-                setImages( response.data.data);
-            })
-            .catch(error => {
+                setImages(response.data.data);
+            } catch (error) {
                 console.error('Error fetching images:', error);
-                return [];
-            });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dormId,reload]);
+                // Optionally handle errors by setting an empty array or a default value
+                setImages([]); // Example: Set an empty array if error occurs
+            }
+        };
+
+        // Fetch images on initial render and whenever dormId or reload changes
+        fetchImages();
+    }, [dormId, reload]);
 
 
     const handleFileChange = (event) => {
@@ -34,10 +41,10 @@ const DormImages = ({ dormId, onClose }) => {
         try {
             const formData = new FormData();
             formData.append('drmImg', selectedFile);
-            const response = await axiosInstance.post(`/dorm-img/${dormId}`, formData, {headers: { 'Content-Type': 'multipart/form-data' }});
+            const response = await axiosInstance.post(`/dorm-img/${dormId}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } });
             setReload(!reload);
             setSelectedFile(null);
-            alert(response.data.message,'success');
+            alert(response.data.message, 'success');
         }
         catch (error) {
             alert(error.response.data.message, 'danger');
@@ -66,7 +73,7 @@ const DormImages = ({ dormId, onClose }) => {
                 <ListGroup>
                     {images.map(image => (
                         <ListGroup.Item key={image.id}>
-                            <img src={ imagesBaseUrl+image.url} alt="Dorm" width="100" />  
+                            <img src={imagesBaseUrl + image.url} alt="Dorm" width="100" />
                             <Button variant="danger" onClick={() => handleRemove(image.id)}>Remove</Button>
                         </ListGroup.Item>
                     ))}
@@ -84,13 +91,12 @@ const DormImages = ({ dormId, onClose }) => {
     );
 };
 
-// #mkd 
-// Воа не мора, работе и без него ама vscode едиторот го бара?
-// За тоа нека го :)
+
 import PropTypes from 'prop-types';
+// Prop types for the component
 DormImages.propTypes = {
-    dormId: PropTypes.number.isRequired,
-    onClose: PropTypes.func.isRequired
+    dormId: PropTypes.number.isRequired, // Assuming dormId is a number
+    onClose: PropTypes.func.isRequired   // Assuming onClose is a function
 };
 
 export default DormImages;

@@ -1,12 +1,12 @@
-// this is a hovered dorm card for overlay on the map
-// it is used to display the dorm info on the map when the user hovers over the marker
+// src/components/DormCardHover.jsx
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import useMousePosition from '../hooks/useMousePosition';
 import useWindowSize from '../hooks/useWindowSize';
 
-
+// this is a hovered dorm card for overlay on the map
+// it is used to display the dorm info on the map when the user hovers over the marker
 const DormCardHover = ({ dorm }) => {
     const cardRef = useRef(null);
     const [cardSize, setCardSize] = useState({ width: 300, height: 300 });
@@ -16,7 +16,7 @@ const DormCardHover = ({ dorm }) => {
     const [ cordX, setCordX ] = useState( mouseCord.x);
     const [ cordY, setCordY ] = useState( mouseCord.y);
 
-
+    // function to update the card size on window resize
     const updateSize = () => {
         if (cardRef.current) {
             // cardRef.current gives direct access to the underlying DOM node.
@@ -27,6 +27,7 @@ const DormCardHover = ({ dorm }) => {
         }
     }
 
+    // useEffect to update the card size on window resize
     useEffect(() => {
         updateSize();
         // Update size on window resize
@@ -37,6 +38,10 @@ const DormCardHover = ({ dorm }) => {
         };
     }, [cardSize]);
 
+    // useMemo to update the card position on mouse move
+    // this is used to avoid flickering at the start
+    // this is called every time the mouse moves
+    // useMemo bether than useEffect in this case, I supose is better :)
     useMemo(() => {
         setCordX(mouseCord.x);
         setCordY(mouseCord.y);
@@ -75,7 +80,7 @@ const DormCardHover = ({ dorm }) => {
     );
 };
 
-
+// Prop types for the component
 DormCardHover.propTypes = {
     dorm: PropTypes.object.isRequired
 };
