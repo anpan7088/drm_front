@@ -1,3 +1,4 @@
+// src/context/loginContext.jsx
 import { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,20 +10,25 @@ const LoginContext = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
 export const useLoginContext = () => useContext(LoginContext);
 
+// LoginProvider component
+// This component is used to manage the login state and provide it to the rest of the application
 export const LoginProvider = ({ children }) => {
     const [userData, setUserData] = useState(initialState);
     const [isLoginVisible, setIsLoginVisible] = useState(false);
 
+    // Login function
     const login = (userID, userName, fullName, userRole, token) => {
         setUserData({ userID, userName, fullName, userRole, token });
         storeCredentials({ userID, userName, fullName, userRole, token });
     };
 
+    // Logout function
     const logout = () => {
         setUserData({ userID: null, userName: '', fullName: '', userRole: null, token: null });
         removeCredentials();
     };
 
+    // Show and hide login popup
     const showLogin = () => setIsLoginVisible(true);
     const hideLogin = () => setIsLoginVisible(false);
 
@@ -39,8 +45,9 @@ export const LoginProvider = ({ children }) => {
     );
 };
 
+// LoginProvider component props
 LoginProvider.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node   // React node
 };
 
 export default LoginContext;

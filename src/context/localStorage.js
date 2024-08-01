@@ -8,7 +8,7 @@ const initialState = {
     token: localStorage.getItem('token') || null,
 };
 
-
+// Function to remove credentials from localStorage
 const removeCredentials = () => {
     localStorage.removeItem('userID');
     localStorage.removeItem('userName');
@@ -17,6 +17,7 @@ const removeCredentials = () => {
     localStorage.removeItem('token');
 };
 
+// Function to store credentials in localStorage
 const storeCredentials = (credent) => {
     const { userID, userName, fullName, userRole, token } = credent;
     localStorage.setItem('userID', userID);
@@ -26,4 +27,5 @@ const storeCredentials = (credent) => {
     localStorage.setItem('token', token);
 };
 
+// Export the functions
 export { removeCredentials, storeCredentials, initialState };
