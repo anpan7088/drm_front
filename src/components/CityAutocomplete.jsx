@@ -1,27 +1,27 @@
-// #mkd
-// Генерирано од чатгпт тс 2021-08-16 15:35:21.781 +0300
-// Не ме бендисуе баш, кога ке немам друга работа ке го поедноставам
-//
 // src/components/CityAutocomplete.jsx
 import { useEffect, useRef, useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Form, Dropdown, InputGroup, FormControl } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
-
+// CityAutocomplete component for displaying a dropdown of city suggestions
+// value: The current value of the input field
+// onChange: A callback function to be called when the input value changes
+// onSelect: A callback function to be called when a city is selected from the dropdown
 const CityAutocomplete = ({ value, onChange, onSelect }) => {
     const [citySuggestions, setCitySuggestions] = useState([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
     const dropdownRef = useRef(null);
 
+    // featch city suggestions from the server when the query is updated
+    // The query is the current value of the input field
     const fetchCitySuggestions = async (query) => {
         if (query.length < 3) {
             setCitySuggestions([]);
             setDropdownOpen(false);
             return;
         }
-
         try {
             const response = await axiosInstance.get(`/cities/name/${query}`);
             setCitySuggestions(response.data.data);
@@ -31,12 +31,14 @@ const CityAutocomplete = ({ value, onChange, onSelect }) => {
         }
     };
 
+    // handle input change event
     const handleChange = (e) => {
         const { value } = e.target;
         onChange(value);
         fetchCitySuggestions(value);
     };
 
+    // handle dropdown item selection
     const handleSelect = (city) => {
         onSelect(city.Name + ', '+ city.country);
         setCitySuggestions([]);
@@ -44,6 +46,7 @@ const CityAutocomplete = ({ value, onChange, onSelect }) => {
         setHighlightedIndex(-1);
     };
 
+    // Keyboard navigation for the dropdown
     const handleKeyDown = (e) => {
         switch (e.key) {
             case 'ArrowDown':
@@ -63,6 +66,7 @@ const CityAutocomplete = ({ value, onChange, onSelect }) => {
         }
     };
 
+    // useEffect hook to handle keyboard navigation
     useEffect(() => {
         if (dropdownRef.current && highlightedIndex >= 0 && highlightedIndex < citySuggestions.length) {
             const item = dropdownRef.current.children[highlightedIndex];
@@ -102,10 +106,11 @@ const CityAutocomplete = ({ value, onChange, onSelect }) => {
     );
 };
 
+// Define prop types for the CityAutocomplete component
 CityAutocomplete.propTypes = {
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onSelect: PropTypes.func.isRequired
+    value: PropTypes.string.isRequired, // value: The current value of the input field (required)
+    onChange: PropTypes.func.isRequired,// onChange: A callback function to be called when the input value changes (required)
+    onSelect: PropTypes.func.isRequired // onSelect: A callback function to be called when a city is selected from the dropdown (required)
 };
 
 export default CityAutocomplete;
