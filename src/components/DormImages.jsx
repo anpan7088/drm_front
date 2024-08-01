@@ -1,5 +1,5 @@
 // src/components/DormImages.jsx
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal, Button, Form, ListGroup } from 'react-bootstrap';
 import axiosInstance from '../axiosConfig';
 
@@ -12,7 +12,7 @@ const DormImages = ({ dormId, onClose }) => {
     const [imagesBaseUrl, setImagesBaseUrl] = useState('');
     const [reload, setReload] = useState(false);
 
-    // hook for fetching images for the dorm
+    // useEffect hook to fetch images from the dorm
     useEffect(() => {
         const fetchImages = async () => {
             try {

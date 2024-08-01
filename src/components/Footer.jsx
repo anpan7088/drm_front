@@ -1,9 +1,8 @@
-// import "../scss/Footer.scss";
-// import { useLoginContext } from "../context/loginContext";
+// src/components/Footer.jsx
 import { appAbout } from "../../AboutData.json";
 
+// Footer component, dysplay the footer of the page
 const Footer = () => {
-    // const { fullName } = useLoginContext();
     const { email, author, description, version } = appAbout;
     
     const mailtoLink = `mailto:${email}`; // Create mailto link

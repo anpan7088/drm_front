@@ -1,18 +1,20 @@
+// src/components/Register.jsx
 import { useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Form, Button, Container } from 'react-bootstrap';
-// import ReactJson from 'react-json-view';
 
 
+// Register component
+// component for registering a new user
 const Register = () => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: ''
     });
-
     const [message, setMessage] = useState('');
 
+    // Handle form changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -21,6 +23,7 @@ const Register = () => {
         });
     };
 
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         axiosInstance.post('/auth/register', formData)
@@ -71,7 +74,6 @@ const Register = () => {
                         required
                     />
                 </Form.Group>
-{/* <ReactJson src={formData} /> */}
                 <Button variant="primary" type="submit">
                     Register
                 </Button>

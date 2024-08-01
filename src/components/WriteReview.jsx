@@ -1,3 +1,4 @@
+// src/components/WriteReview.jsx
 import { useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Modal, Form, Button } from 'react-bootstrap';
@@ -6,6 +7,8 @@ import StarRating from './StarRating';
 
 // Write a review for a dorm
 // TODO: Add validation
+// props: dormId - id of the dorm to write a review for
+// props: onClose - function to call when the review is submitted
 const WriteReview = ({ dormId, onClose }) => {
     const [rating, setRating] = useState(0);
     const [room_rating, setRoomRating] = useState(0);
@@ -13,11 +16,13 @@ const WriteReview = ({ dormId, onClose }) => {
     const [bathroom_rating, setBathroomRating] = useState(0);
     const [comment, setComment] = useState();
 
+    // handle rating change
     const handleRatingChange = (newRating) => {
         setRating(newRating);
         console.log('New rating:', newRating);
     };
 
+    // handle submit
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -29,7 +34,7 @@ const WriteReview = ({ dormId, onClose }) => {
                 bathroom_rating: bathroom_rating,
                 comment: comment,
             });
-            
+
             onClose();
         } catch (error) {
             console.error('Error submitting review', error);
@@ -69,9 +74,10 @@ const WriteReview = ({ dormId, onClose }) => {
     );
 };
 
+// prop types for the component
 WriteReview.propTypes = {
-    dormId: PropTypes.number.isRequired,
-    onClose: PropTypes.func.isRequired
+    dormId: PropTypes.number.isRequired, // id of the dorm to write a review for
+    onClose: PropTypes.func.isRequired   // function to call when the review is submitted
 };
 
 export default WriteReview;

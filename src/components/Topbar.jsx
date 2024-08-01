@@ -1,8 +1,13 @@
+// src/components/Topbar.jsx
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useLoginContext } from "../context/loginContext";
 import LogoutPopUp from './LogoutPopUp';
 import { useState } from 'react';
 
+// top bar component, with menus and login buttons
+// this is the top bar of the website
+// it contains the logo, the menus and the login button
+// it is used in the App.jsx file and is visible on all pages
 const Topbar = () => {
     const { userName, showLogin } = useLoginContext();
 

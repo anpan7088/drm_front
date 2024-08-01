@@ -1,25 +1,26 @@
-import { useMemo, useState } from 'react';
+// src/components/TopDorms.jsx
+import { useEffect, useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Table } from 'react-bootstrap';
 
-// const round = (num) => {
-//     console.log(num);        
-//     return Math.round(num * 100) / 100;
-// }
-    
+// top dorms component
+// this is the top dorms component, it is used in the Home.jsx file and is visible on the home page
 const TopDorms = () => {
     const [topDorms, setTopDorms] = useState([]);
 
-    useMemo(() => {
-        // Fetch top dorms
-        axiosInstance.get('/dorms/top-dorms/4')
-            .then(response => {
+    // useEffect hook to fetch the top dorms from the database
+    useEffect(() => {
+        const fetchTopDorms = async () => {
+            try {
+                const response = await axiosInstance.get('/dorms/top-dorms/400'); // API  endpoint for top dorms with 400 dorms means all dorms
                 setTopDorms(response.data);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error fetching top dorms:', error);
-            });
-    }, []);
+            }
+        };
+        // call the async function to fetch the top dorms
+        fetchTopDorms();
+    }, []); // Empty dependency array to fetch on initial render only
 
     return (
         <>

@@ -1,9 +1,10 @@
+// src/components/ImageCarusel.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Carousel } from 'react-bootstrap';
-// import ReactJson from 'react-json-view'
 
 
+// component for the image carusel
 const ImageCarusel = ({ images }) => {
 
     return (
@@ -21,11 +22,11 @@ const ImageCarusel = ({ images }) => {
     );
 }
 
-
+// prop types for the component
 ImageCarusel.propTypes = {
     images: PropTypes.arrayOf(
         PropTypes.shape({
-            url: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired, // URL of the image
         })
     ).isRequired,
 };

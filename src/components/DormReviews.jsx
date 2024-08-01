@@ -1,31 +1,35 @@
-// DormReviews.js
+// src/components/DormReviews.
 import { ListGroup, Button } from 'react-bootstrap';
 import { useLoginContext } from '../context/loginContext';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
 
+// component for the dorm reviews list
+// dormID is the dorm id
+// refresh is the refresh flag, for refreshing the reviews
 const DormReviews = ({ dormID, refresh  }) => {
     const { userName, userRole } = useLoginContext();
-
     const [reviews, setReviews] = useState([]);
 
-    const fetchReviews = async () => {
-        try {
-            const reviewsResponse = await axiosInstance.get(`/dorms/${dormID}/reviews`);
-            setReviews(reviewsResponse.data.list);
-            
-        } catch (error) {
-            console.error('Error fetching dorm details:', error);
-        }
-    };
+    // useEffect hook to fetch reviews from the api
+    useEffect(() => {
 
-    useMemo(() => {
+        const fetchReviews = async () => {
+            try {
+                const reviewsResponse = await axiosInstance.get(`/dorms/${dormID}/reviews`);
+                setReviews(reviewsResponse.data.list);
+                
+            } catch (error) {
+                console.error('Error fetching dorm details:', error);
+            }
+        };
+
         fetchReviews();
-        console.log(`Fetch reviews for dorm ${dormID}`);
     }, [refresh, dormID]);
 
+    // function to handle delete review
     const handleDelete = async (reviewId) => {
         try {
             axiosInstance.delete(`/reviews/${reviewId}`);
@@ -52,9 +56,10 @@ const DormReviews = ({ dormID, refresh  }) => {
     );
 };
 
+// prop types for the component
 DormReviews.propTypes = {
-    dormID: PropTypes.number.isRequired,
-    refresh: PropTypes.bool.isRequired
+    dormID: PropTypes.number.isRequired,    // dorm id
+    refresh: PropTypes.bool.isRequired      // refresh flag
 };
     
 export default DormReviews;

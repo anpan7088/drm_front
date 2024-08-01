@@ -1,15 +1,21 @@
-// ReviewCard.js
+// src/components/ReviewCard.jsx
 import React, { useState } from 'react';
 import { ListGroup, Button, Card, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axiosInstance from '../axiosConfig';
 import Stars from './Stars';
 
-
+// ReviewCard component
+// review: the review object
+// userName: the user name
+// userRole: the user role
+// onDelete: function to delete the review
+// onEdit: function callback to edit the review
 const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedComment, setEditedComment] = useState(review.comment);
 
+    // handleDelete function to submit edited text
     const handlePatchReview = async () => {
         try {
             await axiosInstance.patch(`/reviews/${review.id}`, { comment: editedComment });
@@ -75,6 +81,7 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
     );
 };
 
+// ReviewCard component props
 ReviewCard.propTypes = {
     review: PropTypes.shape({
         comment: PropTypes.string.isRequired,
@@ -88,4 +95,3 @@ ReviewCard.propTypes = {
 };
 
 export default ReviewCard;
-
