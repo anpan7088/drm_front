@@ -1,6 +1,10 @@
+// src/components/Stars.jsx
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+// star rating component
+// props: totalStars - number of stars, rating - initial rating, label - label for the rating
+// this is only for display, not for rating
 const Stars = ({ totalStars = 5, rating = 0, label = '' }) => {
 
     return (
@@ -26,11 +30,11 @@ const Star = ({ filled, onClick }) => (
     </span>
 );
 
+// prop types for the component
 Stars.propTypes = {
-    totalStars: PropTypes.number,
-    rating: PropTypes.number,
-    label: PropTypes.string,
+    totalStars: PropTypes.number, // number of stars
+    rating: PropTypes.number,   /// initial rating
+    label: PropTypes.string,   // label for the rating
 };
-
 
 export default Stars;

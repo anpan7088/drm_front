@@ -1,9 +1,13 @@
+// src/components/ReviewCard.jsx
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+// Star rating component
+// props: totalStars - number of stars, initialRating - initial rating, onRatingChange - callback function to handle rating change, label - label for the rating
 const StarRating = ({ totalStars = 5, initialRating = 0, onRatingChange, label = '' }) => {
     const [rating, setRating] = useState(initialRating);
 
+    // handle click on star
     const handleClick = (index) => {
         setRating(index + 1);
         if (onRatingChange) {
@@ -35,16 +39,18 @@ const Star = ({ filled, onClick }) => (
     </span>
 );
 
+// prop types for the component
 StarRating.propTypes = {
-    totalStars: PropTypes.number,
-    initialRating: PropTypes.number,
-    onRatingChange: PropTypes.func,
-    label: PropTypes.string,
+    totalStars: PropTypes.number, // number of stars
+    initialRating: PropTypes.number, // initial rating
+    onRatingChange: PropTypes.func, // callback function to handle rating change
+    label: PropTypes.string, // label for the rating
 };
 
+// prop types for the star component
 Star.propTypes = {
-    filled: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired,
+    filled: PropTypes.bool.isRequired,  // is star filled
+    onClick: PropTypes.func.isRequired, // click handler
 };
 
 export default StarRating;

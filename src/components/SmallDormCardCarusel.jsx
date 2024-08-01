@@ -1,12 +1,16 @@
+// src/components/LoginPopUp.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, Badge, Image, Carousel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
+// dorm card with carusel of images component
+// props: dorm - dorm object
 const SmallDormCardCarusel = ({ dorm }) => {
     // hook from react router v6
     const navigate = useNavigate();
 
+    // handle click on button "view dorm"
     const handleClick = () => {
         navigate(`/dorm/${dorm.id}`);
     };
@@ -38,22 +42,23 @@ const SmallDormCardCarusel = ({ dorm }) => {
     );
 };
 
+// prop types for the component
 SmallDormCardCarusel.propTypes = {
-    dorm: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        address: PropTypes.string.isRequired,
-        city: PropTypes.string.isRequired,
-        review_count: PropTypes.number.isRequired,
-        avg_score: PropTypes.string.isRequired,
-        images: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.number.isRequired,
-                url: PropTypes.string.isRequired,
-                title: PropTypes.string,
+    dorm: PropTypes.shape({         // dorm object
+        id: PropTypes.number.isRequired,  // dorm id
+        name: PropTypes.string.isRequired, //   dorm name
+        address: PropTypes.string.isRequired, // dorm address
+        city: PropTypes.string.isRequired,      // dorm city
+        review_count: PropTypes.number.isRequired, // review count
+        avg_score: PropTypes.string.isRequired,   // average score
+        images: PropTypes.arrayOf(          // dorm images
+            PropTypes.shape({          // image object
+                id: PropTypes.number.isRequired, // image id
+                url: PropTypes.string.isRequired, // image url
+                title: PropTypes.string, // image title
             })
-        ).isRequired,
-    }).isRequired,
+        ).isRequired,  // dorm images array is required, as an array of image objects
+    }).isRequired,  /// dorm object is required
 };
 
 export default SmallDormCardCarusel;

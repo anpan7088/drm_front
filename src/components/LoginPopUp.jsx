@@ -1,23 +1,26 @@
+// src/components/LoginPopUp.jsx 
 import React from 'react';
 import { useState } from 'react';
-
 import axiosInstance from '../axiosConfig';
 import { Form, Button, Modal } from 'react-bootstrap';
 
-import Alert from './Alert';
-import { useLoginContext } from '../context/loginContext';
+import Alert from './Alert';   // Import the Alert component
+import { useLoginContext } from '../context/loginContext'; // Import the login context
 
+// LoginPopUp component, for login the user
+// show is the flag for showing the modal
+// handleClose is the function for closing the modal
 const LoginPopUp = ({ show, handleClose }) => {
     const { login } = useLoginContext();
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     });
-
     const [message, setMessage] = useState('');
     const [alert, setAlert] = useState(null); // State to handle alert messages
     // const navigate = useNavigate(); // Get the history instance
 
+    // Handle form changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -26,6 +29,7 @@ const LoginPopUp = ({ show, handleClose }) => {
         });
     };
 
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         axiosInstance.post('/auth/login', formData)
@@ -87,18 +91,12 @@ const LoginPopUp = ({ show, handleClose }) => {
     );
 };
 
-// #mkd 
-// Воа не мора, работе и без него ама vscode едиторот го бара?
-// За тоа нека го :) 
-// ChatGPT za pojasno da ti bide 
-// Explain the following code:
 import PropTypes from 'prop-types';
-import ReactJson from 'react-json-view';
+//  prop types for the component
 LoginPopUp.propTypes = {
-    show: PropTypes.bool.isRequired,
-    handleClose: PropTypes.func.isRequired
+    show: PropTypes.bool.isRequired,  // show flag
+    handleClose: PropTypes.func.isRequired // function to close the modal
 };
-// #mkd-end
 
 export default LoginPopUp;
 
