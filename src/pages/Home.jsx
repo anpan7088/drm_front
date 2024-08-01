@@ -1,22 +1,27 @@
-import { useEffect, useMemo, useState } from 'react';
+// src/朝鮬/pages/Home.jsx
+import { useEffect,useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Row, Col, CardGroup } from 'react-bootstrap';
 import SmallDormCard from '../components/SmallDormCard';
 
-
+// Home Page, display top dorms
 const HomePage = () => {
     const [topDorms, setTopDorms] = useState([]);
 
-    useMemo(() => {
-        // Fetch top dorms
-        axiosInstance.get('/dorms/top-dorms-with-images/400')
-            .then(response => {
+    // useEffect to fetch top dorms from the backend
+    useEffect(() => {
+        // Function to fetch top dorms with images
+        const fetchTopDormsWithImages = async () => {
+            try {
+                const response = await axiosInstance.get('/dorms/top-dorms-with-images/400'); // API endpoint to get top dorms with images
                 setTopDorms(response.data);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error fetching top dorms:', error);
-            });
-    }, []);
+            }
+        };
+        // Call the function to fetch top dorms with images
+        fetchTopDormsWithImages();
+    }, []); // Empty dependency array to fetch on initial render only
 
     return (
         <Container>

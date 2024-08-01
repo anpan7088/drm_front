@@ -1,3 +1,4 @@
+// src/pages/DormReviewManagement.jsx
 import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Form, Button, Table } from 'react-bootstrap';
@@ -5,6 +6,9 @@ import { Container, Form, Button, Table } from 'react-bootstrap';
 import Alert from '../components/Alert';
 import { useLoginContext } from '../context/loginContext';
 
+// Dorm Review Management Page
+// This page is for managing dorm reviews, including adding, editing, and deleting reviews.
+// This page is only accessible to Admin users.
 const DormReviewManagement = () => {
     const { userID } = useLoginContext();
     const [reviews, setReviews] = useState([]);
@@ -16,19 +20,22 @@ const DormReviewManagement = () => {
     const [editingId, setEditingId] = useState(null);
     const [alert, setAlert] = useState(null);
 
+    // useEffect to fetch reviews from the backend
     useEffect(() => {
+        // Fetch reviews from the backend
+        const fetchReviews = async () => {
+            try {
+                const response = await axiosInstance.get('/reviews'); // get all reviews for dom reviews
+                setReviews(response.data);
+            } catch (error) {
+                setAlert({ message: 'Error fetching reviews', variant: 'danger' });
+            }
+        };
+
         fetchReviews();
     }, []);
 
-    const fetchReviews = async () => {
-        try {
-            const response = await axiosInstance.get('/reviews');
-            setReviews(response.data);
-        } catch (error) {
-            setAlert({ message: 'Error fetching reviews', variant: 'danger' });
-        }
-    };
-
+    // Handle change in form input
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -37,6 +44,7 @@ const DormReviewManagement = () => {
         });
     };
 
+    // Handle submit of form
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -55,11 +63,13 @@ const DormReviewManagement = () => {
         }
     };
 
+    // Handle edit of review
     const handleEdit = (review) => {
         setFormData({ dorm_id: review.dorm_id, rating: review.rating, comment: review.comment });
         setEditingId(review.id);
     };
 
+    // Handle delete of review
     const handleDelete = async (id) => {
         try {
             await axiosInstance.delete(`/reviews/${id}`);
@@ -146,5 +156,6 @@ const DormReviewManagement = () => {
         </Container>
     );
 };
+
 
 export default DormReviewManagement;

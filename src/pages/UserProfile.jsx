@@ -1,8 +1,12 @@
+// src/pages/UserProfile.jsx
 import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
 import useTimeoutState from '../hooks/useTimeoutState';
 
+// UserProfile page
+// This page is for displaying the user profile
+// It is also used for editing the user profile
 const UserProfile = () => {
     // defined in src/hooks/useTimeoutState.jsx
     const [showPassword, setShowPassword] = useTimeoutState(false, 3000);
@@ -21,31 +25,33 @@ const UserProfile = () => {
         country: ''
     });
 
+    // useEffect to fetch user profile from the backend
     useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const response = await axiosInstance.get('/user/profile'); // API endpoint to get user profile
+                setProfile(response.data);
+                setFormData({
+                    username: response.data.username,
+                    password: response.data.password,
+                    role: response.data.role || 'user',
+                    firstName: response.data.firstName || '',
+                    lastName: response.data.lastName || '',
+                    email: response.data.email,
+                    age: response.data.age || '',
+                    address: response.data.address || '',
+                    city: response.data.city || '',
+                    country: response.data.country || ''
+                });
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+            }
+        };
+        // Call the function to fetch user profile
         fetchUserProfile();
     }, []);
 
-    const fetchUserProfile = async () => {
-        try {
-            const response = await axiosInstance.get('/user/profile');
-            setProfile(response.data);
-            setFormData({
-                username: response.data.username,
-                password: response.data.password,
-                role: response.data.role || 'user',
-                firstName: response.data.firstName || '',
-                lastName: response.data.lastName || '',
-                email: response.data.email,
-                age: response.data.age || '',
-                address: response.data.address || '',
-                city: response.data.city || '',
-                country: response.data.country || ''
-            });
-        } catch (error) {
-            console.error('Error fetching user profile:', error);
-        }
-    };
-
+    // handle change in input
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -54,6 +60,7 @@ const UserProfile = () => {
         });
     };
 
+    // handle save button click
     const handleSave = async () => {
         try {
             await axiosInstance.patch('/user/profile', formData);
@@ -64,6 +71,7 @@ const UserProfile = () => {
         }
     };
 
+    // handle cancel button click
     const handleCancel = () => {
         setFormData({
             username: profile.username,

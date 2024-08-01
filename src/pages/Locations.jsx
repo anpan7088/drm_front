@@ -1,3 +1,4 @@
+// src/pages/Locations.jsx
 import React, { useState, useMemo } from 'react';
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import axiosInstance from '../axiosConfig';
@@ -16,22 +17,27 @@ import { Overlay } from 'react-bootstrap';
 //   3. Use a third party service like Mapbox, OpenStreet maps or something similar
 const API_KEY = 'AIzaSyB2qqvsS9-CouAIUs6x7uxzYgmF5oEVO38';
 
+// Locations page
+// This page is for displaying the locations of the dorms on google maps component
 const Locations = () => {
     const [locations, setLocations] = useState([]);
     const [hoveredDorm, setHoveredDorm] = useState(null); // State for the hovered dorm
     const navigator = useNavigate();
 
-    useMemo(async () => {
-        // Fetch locations from the API
-        await axiosInstance('/dorms')
-            .then(response => {
+    useEffect(() => {
+        const fetchLocations = async () => {
+            try {
+                const response = await axiosInstance('/dorms');
                 setLocations(response.data);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error fetching Locations:', error);
-                return [];
-            });
-    }, []);
+                // Set an empty array or a default value (optional)
+                setLocations([]); // Example: Set an empty array on error
+            }
+        };
+
+        fetchLocations();
+    }, []); // Empty dependency array to fetch on initial render only
 
     // Handle marker click
     const handleMarkerClick = (location) => {

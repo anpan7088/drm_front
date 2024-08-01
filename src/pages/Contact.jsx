@@ -1,4 +1,6 @@
+// src/pages/Contact.js
 
+// Contact Page, just place holder for now
 const Contact = () => {
     return (
         <div>

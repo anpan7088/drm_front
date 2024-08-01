@@ -1,22 +1,27 @@
-import { useMemo, useState } from 'react';
+// src/components/Carusels.jsx
+import { useEffect, useState } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Row, Col } from 'react-bootstrap';
 import SmallDormCardCarusel from '../components/SmallDormCardCarusel';
-import DormCardHover from '../components/DormCardHover';
 
+// Carusels page
+// Same as Home page, but displayng carusels for images instead of first image on cards
 const Carusels = () => {
     const [topDorms, setTopDorms] = useState([]);
 
-    useMemo(() => {
-        // Fetch top dorms
-        axiosInstance.get('/dorms/top-dorms-with-images/400')
-        // axiosInstance.get('/dorms')
+    // useEffect to fetch top dorms from the backend
+    useEffect(() => {
+        // Fetch top dorms from the backend
+        const fetchTopDorms = async () => {
+            axiosInstance.get('/dorms/top-dorms-with-images/400')  // API endpoint to get top dorms
             .then(response => {
                 setTopDorms(response.data);
             })
             .catch(error => {
                 console.error('Error fetching top dorms:', error);
             });
+        };
+        fetchTopDorms();
     }, []);
 
     return (

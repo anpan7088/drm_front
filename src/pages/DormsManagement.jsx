@@ -1,6 +1,4 @@
 // DormsManagement.js
-// htis is the dorm managment page
-// shoudbe visble only wen user is logged in and is an admin
 import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Container, Button, Table } from 'react-bootstrap';
@@ -9,6 +7,8 @@ import WriteReview from '../components/WriteReview';
 import DormImages from '../components/DormImages';
 import DormEdit from '../components/DormEdit';
 
+// htis is the dorm managment page
+// shoudbe visble only wen user is logged in and is an admin
 const DormsManagement = () => {
     const [dorms, setDorms] = useState([]);
     const [editingDorm, setEditingDorm] = useState(null);
@@ -39,19 +39,21 @@ const DormsManagement = () => {
         setEditingDorm(null);
     };
 
+    // useEffect to fetch dorms from the backend
     useEffect(() => {
+        const fetchDorms = async () => {
+            try {
+                const response = await axiosInstance.get('/dorms');
+                setDorms(response.data);
+            } catch (error) {
+                setAlert({ message: 'Error fetching dorms', variant: 'danger' });
+            }
+        };
+
         fetchDorms();
     }, []);
 
-    const fetchDorms = async () => {
-        try {
-            const response = await axiosInstance.get('/dorms');
-            setDorms(response.data);
-        } catch (error) {
-            setAlert({ message: 'Error fetching dorms', variant: 'danger' });
-        }
-    };
-
+    // handle submit of form
     const handleSubmit = async (formData) => {
         try {
             if (editingDorm) {
@@ -69,6 +71,7 @@ const DormsManagement = () => {
         }
     };
 
+    // handle delete dorm
     const handleDelete = async (id) => {
         try {
             await axiosInstance.delete(`/dorms/${id}`);
@@ -79,11 +82,13 @@ const DormsManagement = () => {
         }
     };
 
+    // handle write review
     const handleWriteReview = (dormId) => {
         setReviewDormId(dormId);
         setShowReviewForm(true);
     };
 
+    // handle close review form
     const handleCloseReviewForm = () => {
         setShowReviewForm(false);
         setReviewDormId(null);

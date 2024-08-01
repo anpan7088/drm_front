@@ -1,6 +1,9 @@
+// src/pages/About.jsx
 import { Button } from "react-bootstrap";
 import {  useLoginContext } from "../context/loginContext";
 
+// About Page, just place holder for now
+// to be replaced with actual content
 const About = () => {
     const { userName, fullName, logout, showLogin } = useLoginContext();
 
