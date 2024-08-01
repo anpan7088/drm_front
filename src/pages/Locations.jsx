@@ -78,7 +78,7 @@ const Locations = () => {
                                         // changing standard marker icon to custom one
                                         icon={{
                                             url: '/dorm.png', // Custom icon URL
-                                            scaledSize: new window.google.maps.Size(30, 30), // Scale the icon
+                                            scaledSize: { width: 30, height: 30 },  // Scale the icon
                                             caption: "Title for tooltip"
                                         }}
                                     >
