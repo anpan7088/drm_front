@@ -1,5 +1,5 @@
 // src/pages/Locations.jsx
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import axiosInstance from '../axiosConfig';
 import { useNavigate } from 'react-router-dom';
