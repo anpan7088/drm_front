@@ -22,18 +22,19 @@ const DormReviewManagement = () => {
 
     // useEffect to fetch reviews from the backend
     useEffect(() => {
-        // Fetch reviews from the backend
-        const fetchReviews = async () => {
-            try {
-                const response = await axiosInstance.get('/reviews'); // get all reviews for dom reviews
-                setReviews(response.data);
-            } catch (error) {
-                setAlert({ message: 'Error fetching reviews', variant: 'danger' });
-            }
-        };
-
         fetchReviews();
     }, []);
+
+    // Fetch reviews from the backend
+    // this function is called in the useEffect hook, and it is called every time the component is rendered
+    const fetchReviews = async () => {
+        try {
+            const response = await axiosInstance.get('/reviews'); // get all reviews for dom reviews
+            setReviews(response.data);
+        } catch (error) {
+            setAlert({ message: 'Error fetching reviews', variant: 'danger' });
+        }
+    };
 
     // Handle change in form input
     const handleChange = (e) => {

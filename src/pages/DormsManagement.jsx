@@ -56,7 +56,6 @@ const DormsManagement = () => {
         }
     };
 
-
     // handle submit of form
     const handleSubmit = async (formData) => {
         try {

@@ -49,7 +49,7 @@ SmallDormCard.propTypes = {
         address: PropTypes.string.isRequired,// address of the dorm
         city: PropTypes.string.isRequired, // city of the dorm
         review_count: PropTypes.number.isRequired, // number of reviews for the dorm
-        avg_score: PropTypes.string.isRequired, // average score of the dorm
+        avg_score: PropTypes.string, // average score of the dorm
         images: PropTypes.arrayOf(              // array of images
             PropTypes.shape({                // image object
                 id: PropTypes.number.isRequired, // id of the image

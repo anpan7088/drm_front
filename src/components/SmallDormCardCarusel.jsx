@@ -19,7 +19,7 @@ const SmallDormCardCarusel = ({ dorm }) => {
         <Card className="small-dorm-card-carusel">
             <Carousel>
                 {dorm.images.map((image) => (
-                    <Carousel.Item>
+                    <Carousel.Item key={image.id}>
                         <Image src={image.url} alt="First slide" style={{height: '300px'}} />
                     </Carousel.Item>
                 ))}
@@ -50,7 +50,7 @@ SmallDormCardCarusel.propTypes = {
         address: PropTypes.string.isRequired, // dorm address
         city: PropTypes.string.isRequired,      // dorm city
         review_count: PropTypes.number.isRequired, // review count
-        avg_score: PropTypes.string.isRequired,   // average score
+        avg_score: PropTypes.string,   // average score
         images: PropTypes.arrayOf(          // dorm images
             PropTypes.shape({          // image object
                 id: PropTypes.number.isRequired, // image id
