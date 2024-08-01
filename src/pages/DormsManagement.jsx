@@ -36,22 +36,26 @@ const DormsManagement = () => {
     };
     const handleEditClose = () => {
         setShowEditModal(false);
+        // alert(showEditModal);
         setEditingDorm(null);
     };
 
     // useEffect to fetch dorms from the backend
     useEffect(() => {
-        const fetchDorms = async () => {
-            try {
-                const response = await axiosInstance.get('/dorms');
-                setDorms(response.data);
-            } catch (error) {
-                setAlert({ message: 'Error fetching dorms', variant: 'danger' });
-            }
-        };
-
         fetchDorms();
     }, []);
+
+    // fetch dorms from the backend and set the dorms state
+    // outside of the useEffect,so  we can use the fetchDorms function to fetch dorms
+    const fetchDorms = async () => {
+        try {
+            const response = await axiosInstance.get('/dorms');
+            setDorms(response.data);
+        } catch (error) {
+            setAlert({ message: 'Error fetching dorms', variant: 'danger' });
+        }
+    };
+
 
     // handle submit of form
     const handleSubmit = async (formData) => {
