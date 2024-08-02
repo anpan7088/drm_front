@@ -4,7 +4,6 @@ import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import axiosInstance from '../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import DormCardHover from '../components/DormCardHover';
-import { Overlay } from 'react-bootstrap';
 
 // API_KEY for Google Maps
 // keeping this key like this in code has significant security issues
@@ -23,6 +22,18 @@ const Locations = () => {
     const [locations, setLocations] = useState([]);
     const [hoveredDorm, setHoveredDorm] = useState(null); // State for the hovered dorm
     const navigator = useNavigate();
+
+    // const [zoomLevel, setZoomLevel] = useState(9);
+    // const onMapZoom = (map) => {
+    //     setZoomLevel(map.zoom);
+    //     console.log(zoomLevel);
+    // };
+    const getIconSize = () => {
+        const baseSize = 28;
+        // const scaleFactor = 1 + (zoomLevel - 9) * 0.1; // Adjust 0.1 to change scaling speed
+        // return Math.max(baseSize * scaleFactor, 20); // Set a minimum size
+        return { width: 28, height: 28 }
+    };
 
     useEffect(() => {
         const fetchLocations = async () => {
@@ -45,7 +56,7 @@ const Locations = () => {
         console.log(location);
     };
 
-
+    // H
     const handleMarkerMouseOver = async (location) => {
         setHoveredDorm(location);
     };
@@ -64,6 +75,7 @@ const Locations = () => {
                                 style={{ width: '1300px', height: '880px' }}
                                 defaultCenter={{ lat: 46.17502993958369, lng: 15.023888406730292 }}
                                 defaultZoom={9}
+                                // onZoomChanged={onMapZoom}
                                 gestureHandling={'greedy'}
                                 disableDefaultUI={true}
                             >
@@ -77,8 +89,9 @@ const Locations = () => {
                                         onMouseOut={handleMarkerMouseOut}
                                         // changing standard marker icon to custom one
                                         icon={{
-                                            url: '/dorm.png', // Custom icon URL
-                                            scaledSize: { width: 30, height: 30 },  // Scale the icon
+                                            url: '/motel.png',
+                                            // scaledSize: { width: 30, height: 30 },
+                                            scaledSize: getIconSize(),
                                             caption: "Title for tooltip"
                                         }}
                                     >

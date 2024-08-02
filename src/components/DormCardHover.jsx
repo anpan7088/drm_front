@@ -27,22 +27,12 @@ const DormCardHover = ({ dorm }) => {
         }
     }
 
-    // useEffect to update the card size on window resize
-    useEffect(() => {
-        updateSize();
-        // Update size on window resize
-        window.addEventListener('resize', updateSize);
-        // Clean up the event listener on component unmount
-        return () => {
-            window.removeEventListener('resize', updateSize);
-        };
-    }, [cardSize]);
-
     // useMemo to update the card position on mouse move
     // this is used to avoid flickering at the start
     // this is called every time the mouse moves
     // useMemo bether than useEffect in this case, I supose is better :)
     useMemo(() => {
+        updateSize();  // update size before setin cordinates of the popup
         setCordX(mouseCord.x);
         setCordY(mouseCord.y);
         if ((mouseCord.x + cardSize.width) > winSize.width) {
