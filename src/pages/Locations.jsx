@@ -16,6 +16,10 @@ import DormCardHover from '../components/DormCardHover';
 //   3. Use a third party service like Mapbox, OpenStreet maps or something similar
 const API_KEY = 'AIzaSyB2qqvsS9-CouAIUs6x7uxzYgmF5oEVO38';
 
+const DEFAULT_ZOOM = 9;
+const DEFAULT_ICON_SIZE = 20;
+const DEFAULT_CENTER = { lat: 46.17502993958369, lng: 15.023888406730292 };
+
 // Locations page
 // This page is for displaying the locations of the dorms on google maps component
 const Locations = () => {
@@ -23,22 +27,21 @@ const Locations = () => {
     const [hoveredDorm, setHoveredDorm] = useState(null); // State for the hovered dorm
     const navigator = useNavigate();
 
-    // const [zoomLevel, setZoomLevel] = useState(9);
-    // const onMapZoom = (map) => {
-    //     setZoomLevel(map.zoom);
-    //     console.log(zoomLevel);
-    // };
-    const getIconSize = () => {
-        const baseSize = 28;
-        // const scaleFactor = 1 + (zoomLevel - 9) * 0.1; // Adjust 0.1 to change scaling speed
-        // return Math.max(baseSize * scaleFactor, 20); // Set a minimum size
-        return { width: 28, height: 28 }
+    const [iconSize, setIconSize] = useState({ width: 20, height: 20 });
+
+    // function to handle dorm icon size on zoom change
+    const onMapZoom = (zoom) => {
+        const baseSize = DEFAULT_ICON_SIZE;
+        const scaleFactor = Math.max(0.5, Math.min(2, zoom / DEFAULT_ZOOM));
+        const size = Math.round(baseSize * scaleFactor);
+        setIconSize({ width: size, height: size });
     };
 
+    // Fetch locations on initial render
     useEffect(() => {
         const fetchLocations = async () => {
             try {
-                const response = await axiosInstance('/dorms');
+                const response = await axiosInstance('/dorms'); // API call to get locations (dorms list width coordinates)
                 setLocations(response.data);
             } catch (error) {
                 console.error('Error fetching Locations:', error);
@@ -50,17 +53,18 @@ const Locations = () => {
         fetchLocations();
     }, []); // Empty dependency array to fetch on initial render only
 
-    // Handle marker click
+    // Handle marker click, navigate to the dorm page
     const handleMarkerClick = (location) => {
         navigator(`/dorm/${location.id}`);
         console.log(location);
     };
 
-    // H
+    // Handle marker mouse over, set hovered dorm to show the card
     const handleMarkerMouseOver = async (location) => {
         setHoveredDorm(location);
     };
 
+    // Handle marker mouse out, set hovered dorm to null to hide the card
     const handleMarkerMouseOut = () => {
         setHoveredDorm(null);
     };
@@ -73,9 +77,9 @@ const Locations = () => {
                         <APIProvider apiKey={API_KEY}>
                             <Map
                                 style={{ width: '1300px', height: '880px' }}
-                                defaultCenter={{ lat: 46.17502993958369, lng: 15.023888406730292 }}
-                                defaultZoom={9}
-                                // onZoomChanged={onMapZoom}
+                                defaultCenter={DEFAULT_CENTER}
+                                defaultZoom={DEFAULT_ZOOM}
+                                onZoomChanged={(mapObject) => onMapZoom(mapObject.map.zoom)} // Handle zoom change
                                 gestureHandling={'greedy'}
                                 disableDefaultUI={true}
                             >
@@ -87,18 +91,15 @@ const Locations = () => {
                                         onClick={() => handleMarkerClick(location)}
                                         onMouseOver={() => handleMarkerMouseOver(location)}
                                         onMouseOut={handleMarkerMouseOut}
-                                        // changing standard marker icon to custom one
-                                        icon={{
+                                        icon={{ // changing standard marker icon to custom one
                                             url: '/motel.png',
-                                            // scaledSize: { width: 30, height: 30 },
-                                            scaledSize: getIconSize(),
+                                            scaledSize: iconSize,
                                             caption: "Title for tooltip"
                                         }}
                                     >
                                     </Marker>
                                 ))}
                             </Map>
-                            {/* <ReactJson src={hoveredDorm} /> */}
                         </APIProvider>
                     </div>
                 </div>

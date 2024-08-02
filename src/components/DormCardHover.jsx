@@ -28,7 +28,6 @@ const DormCardHover = ({ dorm }) => {
     }
 
     // useMemo to update the card position on mouse move
-    // this is used to avoid flickering at the start
     // this is called every time the mouse moves
     // useMemo bether than useEffect in this case, I supose is better :)
     useMemo(() => {
