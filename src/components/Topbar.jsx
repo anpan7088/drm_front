@@ -26,8 +26,8 @@ const Topbar = () => {
                             <Nav.Link href="/carusels">Carusels</Nav.Link>
                             <Nav.Link href="/locations">Locations</Nav.Link>
                             <NavDropdown title="Dorms" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/dorms">Dorm Management</NavDropdown.Item>
-                                <NavDropdown.Item href="/reviews">Dorm reviews</NavDropdown.Item>
+                                <NavDropdown.Item href="/dorms">Dorm admin</NavDropdown.Item>
+                                <NavDropdown.Item href="/reviews">Review admin</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <Nav className="ml-auto">

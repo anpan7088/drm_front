@@ -1,10 +1,13 @@
 // src/pages/DormReviewManagement.jsx
 import { useState, useEffect } from 'react';
-import axiosInstance from '../axiosConfig';
 import { Container, Form, Button, Table } from 'react-bootstrap';
 
-import Alert from '../components/Alert';
+// import axios instance
+import axiosInstance from '../axiosConfig';
+
+// import components
 import { useLoginContext } from '../context/loginContext';
+import EditReview from '../components/EditReview';
 
 // Dorm Review Management Page
 // This page is for managing dorm reviews, including adding, editing, and deleting reviews.
@@ -12,13 +15,8 @@ import { useLoginContext } from '../context/loginContext';
 const DormReviewManagement = () => {
     const { userID } = useLoginContext();
     const [reviews, setReviews] = useState([]);
-    const [formData, setFormData] = useState({
-        dorm_id: '',
-        rating: '',
-        comment: '',
-    });
+    // if editingId is not null, then we are editing a review
     const [editingId, setEditingId] = useState(null);
-    const [alert, setAlert] = useState(null);
 
     // useEffect to fetch reviews from the backend
     useEffect(() => {
@@ -34,41 +32,7 @@ const DormReviewManagement = () => {
         } catch (error) {
             setAlert({ message: 'Error fetching reviews', variant: 'danger' });
         }
-    };
-
-    // Handle change in form input
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
-    // Handle submit of form
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            if (editingId) {
-                await axiosInstance.patch(`/reviews/${editingId}`, formData);
-                setAlert({ message: 'Review updated successfully', variant: 'success' });
-            } else {
-                await axiosInstance.post('/reviews', { ...formData, user_id: userID });
-                setAlert({ message: 'Review added successfully', variant: 'success' });
-            }
-            fetchReviews();
-            setFormData({ dorm_id: '', rating: '', comment: '' });
-            setEditingId(null);
-        } catch (error) {
-            setAlert({ message: 'Error saving review: ' + error.response.data.error, variant: 'danger' });
-        }
-    };
-
-    // Handle edit of review
-    const handleEdit = (review) => {
-        setFormData({ dorm_id: review.dorm_id, rating: review.rating, comment: review.comment });
-        setEditingId(review.id);
-    };
+    }; 
 
     // Handle delete of review
     const handleDelete = async (id) => {
@@ -84,49 +48,6 @@ const DormReviewManagement = () => {
     return (
         <Container>
             <h2>Reviews Management</h2>
-            {alert && <Alert message={alert.message} variant={alert.variant} onClose={() => setAlert(null)} />}
-            <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formDormId">
-                    <Form.Label>Dorm ID</Form.Label>
-                    <Form.Control
-                        type="number"
-                        name="dorm_id"
-                        value={formData.dorm_id}
-                        onChange={handleChange}
-                        required
-                    />
-                </Form.Group>
-
-                <Form.Group controlId="formRating">
-                    <Form.Label>Rating</Form.Label>
-                    <Form.Control
-                        type="number"
-                        name="rating"
-                        value={formData.rating}
-                        onChange={handleChange}
-                        min="1"
-                        max="5"
-                        required
-                    />
-                </Form.Group>
-
-                <Form.Group controlId="formComment">
-                    <Form.Label>Comment</Form.Label>
-                    <Form.Control
-                        as="textarea"
-                        rows={3}
-                        name="comment"
-                        value={formData.comment}
-                        onChange={handleChange}
-                        required
-                    />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    {editingId ? 'Update Review' : 'Add Review'}
-                </Button>
-            </Form>
-
             <Table striped bordered hover className="mt-4">
                 <thead>
                     <tr>
@@ -143,9 +64,11 @@ const DormReviewManagement = () => {
                             <td>{review.rating}</td>
                             <td>{review.comment}</td>
                             <td>
-                                <Button variant="warning" onClick={() => handleEdit(review)}>
+                                <Button variant="warning" onClick={() => setEditingId(review.id)}>
                                     Edit
-                                </Button>{' '}
+                                </Button>
+                            </td>
+                            <td>
                                 <Button variant="danger" onClick={() => handleDelete(review.id)}>
                                     Delete
                                 </Button>
@@ -154,9 +77,11 @@ const DormReviewManagement = () => {
                     ))}
                 </tbody>
             </Table>
+            { editingId && (
+                <EditReview reviewId={editingId} onClose={() => setEditingId(null)} />
+            )}
         </Container>
     );
 };
-
 
 export default DormReviewManagement;

@@ -1,32 +1,45 @@
-// src/components/WriteReview.jsx
-import { useState } from 'react';
+// src/components/EditReview.jsx
+import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
 import { Modal, Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import StarRating from './StarRating';
 
-// Write a review for a dorm
-// TODO: Add validation
-// props: dormId - id of the dorm to write a review for
+// Edit a review for a dorm
+// this could be a part of the WriteReview component, but for now it's separate component
+// props: reviewId - id of the review to edit
 // props: onClose - function to call when the review is submitted
-const WriteReview = ({ dormId, onClose }) => {
+const EditReview = ({ reviewId, onClose }) => {
     const [rating, setRating] = useState(0);
     const [room_rating, setRoomRating] = useState(0);
     const [location_rating, setLocationRating] = useState(0);
     const [bathroom_rating, setBathroomRating] = useState(0);
-    const [comment, setComment] = useState();
+    const [comment, setComment] = useState('');
 
-    // handle rating change
-    const handleRatingChange = (newRating) => {
-        setRating(newRating);
-    };
+    useEffect(() => {
+        // Fetch the existing review data
+        const fetchReview = async () => {
+            try {
+                const response = await axiosInstance.get(`/reviews/${reviewId}`);
+                const review = response.data;
+                setRating(review.rating);
+                setRoomRating(review.room_rating);
+                setLocationRating(review.location_rating);
+                setBathroomRating(review.bathroom_rating);
+                setComment(review.comment);
+            } catch (error) {
+                console.error('Error fetching review', error);
+            }
+        };
+
+        fetchReview();
+    }, [reviewId]);
 
     // handle submit
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axiosInstance.post('/reviews', {
-                dorm_id: dormId,
+            await axiosInstance.patch(`/reviews/${reviewId}`, {
                 rating: rating,
                 room_rating: room_rating,
                 location_rating: location_rating,
@@ -36,20 +49,20 @@ const WriteReview = ({ dormId, onClose }) => {
 
             onClose();
         } catch (error) {
-            console.error('Error submitting review', error);
+            console.error('Error updating review', error);
         }
     };
 
     return (
         <Modal show onHide={onClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Write a Review</Modal.Title>
+                <Modal.Title>Edit Review</Modal.Title>
             </Modal.Header>
             <Form onSubmit={handleSubmit}>
                 <Modal.Body>
-                    <StarRating label='Rating' rating={rating} onRatingChange={handleRatingChange} />
+                    <StarRating label='Rating' rating={rating} onRatingChange={setRating} />
                     <StarRating label='Room Rating' rating={room_rating} onRatingChange={setRoomRating} />
-                    <StarRating  label='Location Rating' rating={location_rating} onRatingChange={setLocationRating} />
+                    <StarRating label='Location Rating' rating={location_rating} onRatingChange={setLocationRating} />
                     <StarRating label='Bathroom Rating' rating={bathroom_rating} onRatingChange={setBathroomRating} />
                     <Form.Group controlId="formComment">
                         <Form.Label>Comment</Form.Label>
@@ -64,19 +77,18 @@ const WriteReview = ({ dormId, onClose }) => {
                 </Modal.Body>
                 <Modal.Footer className='col'>
                     <Button variant="primary" type="submit">
-                        Submit
+                        Update
                     </Button>
                 </Modal.Footer>
             </Form>
-
         </Modal>
     );
 };
 
 // prop types for the component
-WriteReview.propTypes = {
-    dormId: PropTypes.number.isRequired, // id of the dorm to write a review for
-    onClose: PropTypes.func.isRequired   // function to call when the review is submitted
+EditReview.propTypes = {
+    reviewId: PropTypes.number.isRequired, // id of the review to edit
+    onClose: PropTypes.func.isRequired, // function to call when the review is submitted
 };
 
-export default WriteReview;
+export default EditReview;
