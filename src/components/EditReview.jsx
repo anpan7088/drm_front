@@ -60,10 +60,10 @@ const EditReview = ({ reviewId, onClose }) => {
             </Modal.Header>
             <Form onSubmit={handleSubmit}>
                 <Modal.Body>
-                    <StarRating label='Rating' rating={rating} onRatingChange={setRating} />
-                    <StarRating label='Room Rating' rating={room_rating} onRatingChange={setRoomRating} />
-                    <StarRating label='Location Rating' rating={location_rating} onRatingChange={setLocationRating} />
-                    <StarRating label='Bathroom Rating' rating={bathroom_rating} onRatingChange={setBathroomRating} />
+                    <StarRating label='Rating' initialRating={rating} onRatingChange={setRating} />
+                    <StarRating label='Room Rating' initialRating={room_rating} onRatingChange={setRoomRating} />
+                    <StarRating label='Location Rating' initialRating={location_rating} onRatingChange={setLocationRating} />
+                    <StarRating label='Bathroom Rating' initialRating={bathroom_rating} onRatingChange={setBathroomRating} />
                     <Form.Group controlId="formComment">
                         <Form.Label>Comment</Form.Label>
                         <Form.Control

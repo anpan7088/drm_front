@@ -1,11 +1,18 @@
 // src/components/ReviewCard.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+
+const totalStars = 5;
 
 // Star rating component
 // props: totalStars - number of stars, initialRating - initial rating, onRatingChange - callback function to handle rating change, label - label for the rating
-const StarRating = ({ totalStars = 5, initialRating = 0, onRatingChange, label = '' }) => {
+const StarRating = ({ label = '', initialRating = 0 , onRatingChange }) => {
     const [rating, setRating] = useState(initialRating);
+
+    // update rating when initialRating changes, litle bit hacky but it works
+    useEffect(() => {
+        setRating(initialRating);
+    }, [initialRating]);
 
     // handle click on star
     const handleClick = (index) => {
@@ -41,7 +48,6 @@ const Star = ({ filled, onClick }) => (
 
 // prop types for the component
 StarRating.propTypes = {
-    totalStars: PropTypes.number, // number of stars
     initialRating: PropTypes.number, // initial rating
     onRatingChange: PropTypes.func, // callback function to handle rating change
     label: PropTypes.string, // label for the rating
