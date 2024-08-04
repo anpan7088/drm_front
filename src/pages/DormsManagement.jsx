@@ -1,7 +1,13 @@
-// DormsManagement.js
+// src/pages/DormsManagement.js
+
+//import React libraries
 import { useState, useEffect } from 'react';
-import axiosInstance from '../axiosConfig';
 import { Container, Button, Table } from 'react-bootstrap';
+
+// import axios instance, which is used to make api calls
+import axiosInstance from '../axiosConfig';
+
+// import components
 import Alert from '../components/Alert';
 import WriteReview from '../components/WriteReview';
 import DormImages from '../components/DormImages';

@@ -1,5 +1,5 @@
 // src/context/loginContext.jsx
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { initialState, removeCredentials, storeCredentials } from './localStorage';
@@ -17,9 +17,10 @@ export const LoginProvider = ({ children }) => {
     const [isLoginVisible, setIsLoginVisible] = useState(false);
 
     // Login function
-    const login = (userID, userName, fullName, userRole, token) => {
-        setUserData({ userID, userName, fullName, userRole, token });
-        storeCredentials({ userID, userName, fullName, userRole, token });
+    const login = (userID, userName, fullName, userRole, token, expiresIn) => {
+        const expirationTime = Date.now() + expiresIn * 1000; // expiresIn is in seconds
+        setUserData({ userID, userName, fullName, userRole, token, expirationTime });
+        storeCredentials({ userID, userName, fullName, userRole, token, expirationTime });
     };
 
     // Logout function
@@ -32,11 +33,28 @@ export const LoginProvider = ({ children }) => {
     const showLogin = () => setIsLoginVisible(true);
     const hideLogin = () => setIsLoginVisible(false);
 
+    // Check token expiration and auto logout
+    useEffect(() => {
+        if (!userData.token || !userData.expirationTime) return;
+
+        const timeLeft = userData.expirationTime - Date.now();
+
+        if (timeLeft <= 0) {
+            logout();
+        } else {
+            const timeoutId = setTimeout(() => {
+                logout();
+            }, timeLeft);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [userData, logout]);
+
     return (
         <LoginContext.Provider
             value={{
-                ...userData,   // { userID, userName, fullName, userRole, token } 
-                login, logout,  // functions for login and logout
+                ...userData,        // { userID, userName, fullName, userRole, token, expirationTime } 
+                login, logout,      // functions for login and logout
                 showLogin, hideLogin  // this can be optimized ??? may be
             }}>
             {children}

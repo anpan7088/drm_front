@@ -34,9 +34,10 @@ const LoginPopUp = ({ show, handleClose }) => {
         e.preventDefault();
         axiosInstance.post('/auth/login', formData)
             .then((response) => {
-                const { token, fullName, role } = response.data;
-                login(response.data.id, formData.username, fullName, role, token);
-                setMessage(`Login successful: ` + response.data.fullName);
+                const { id, userName,fullName, role, token, expiresIn } = response.data;
+                console.log(response.data);
+                login( id, userName, fullName, role, token, expiresIn);
+                setMessage(`Login successful: ` + fullName);
                 setAlert({ message: 'Login successful', variant: 'success' });
                 // Close modal and navigate after success
                 setTimeout(() => {

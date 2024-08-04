@@ -28,7 +28,7 @@ const Alert = ({ message, variant = 'success', duration = 5000, onClose }) => {
     if (!show) return null;
 
     return (
-        <div className="alert-container">
+        <div className="alert-container" style={{  zIndex: 9999 }}>
             <BootstrapAlert variant={variant} onClose={() => setShow(false)} dismissible>
                 {message}
             </BootstrapAlert>

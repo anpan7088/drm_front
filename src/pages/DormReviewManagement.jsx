@@ -1,6 +1,6 @@
 // src/pages/DormReviewManagement.jsx
 import { useState, useEffect } from 'react';
-import { Container, Form, Button, Table } from 'react-bootstrap';
+import { Container, Button, Table } from 'react-bootstrap';
 
 // import axios instance
 import axiosInstance from '../axiosConfig';
@@ -8,13 +8,16 @@ import axiosInstance from '../axiosConfig';
 // import components
 import { useLoginContext } from '../context/loginContext';
 import EditReview from '../components/EditReview';
+import Alert from '../components/Alert';
 
 // Dorm Review Management Page
 // This page is for managing dorm reviews, including adding, editing, and deleting reviews.
 // This page is only accessible to Admin users.
 const DormReviewManagement = () => {
-    const { userID } = useLoginContext();
+    // const { userID, userRole } = useLoginContext();
     const [reviews, setReviews] = useState([]);
+    const [alert, setAlert] = useState(null);
+    
     // if editingId is not null, then we are editing a review
     const [editingId, setEditingId] = useState(null);
 

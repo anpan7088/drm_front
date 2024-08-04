@@ -14,7 +14,6 @@ const axiosInstance = axios.create({
 
 
 // this interceptor will automatically attach the token to the request headers
-// 
 axiosInstance.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -37,7 +36,7 @@ axiosInstance.interceptors.response.use(
         // alert('Something went wrong. Please try again later.');
         console.error(error.response.status);
         if (error.response && (error.response.status === 403 || error.response.status === 401)) {
-            alert('Your session has expired. Please login again.');
+            // alert('Your session has expired. Please login again.');
             removeCredentials();
             // window.location.href = '/login';
         }

@@ -72,7 +72,6 @@ const DormCard = ({ dormID }) => {
                                 ))}
                             </Carousel>
                         )}
-                        {/* <ReactJson src={reviews} /> */}
                         <DormReviews dormID={dormID} refresh={refresh} />
                     </Card.Body>
                     <Card.Footer>

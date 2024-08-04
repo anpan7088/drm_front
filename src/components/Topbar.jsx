@@ -9,7 +9,7 @@ import { useState } from 'react';
 // it contains the logo, the menus and the login button
 // it is used in the App.jsx file and is visible on all pages
 const Topbar = () => {
-    const { userName, showLogin } = useLoginContext();
+    const { userName, userRole, showLogin } = useLoginContext();
 
     const { logout } = useLoginContext();
     const [showLogoutPopUp, setShowLogoutPopUp] = useState(false);
@@ -25,10 +25,12 @@ const Topbar = () => {
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/carusels">Carusels</Nav.Link>
                             <Nav.Link href="/locations">Locations</Nav.Link>
-                            <NavDropdown title="Dorms" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/dorms">Dorm admin</NavDropdown.Item>
-                                <NavDropdown.Item href="/reviews">Review admin</NavDropdown.Item>
-                            </NavDropdown>
+                            {userRole === 'admin' && (
+                                <NavDropdown title="Admin" id="basic-nav-dropdown">
+                                    <NavDropdown.Item href="/dorms">Dorm admin</NavDropdown.Item>
+                                    <NavDropdown.Item href="/reviews">Review admin</NavDropdown.Item>
+                                </NavDropdown>
+                            )}
                         </Nav>
                         <Nav className="ml-auto">
                             <NavDropdown title={userName || "Login"} id="user-dropdown">
