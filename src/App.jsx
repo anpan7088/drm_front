@@ -1,7 +1,6 @@
 // App.js
-import { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Button, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 // Bootstrap Bundle JS, bootstrap.css is imported in the App.scss
 import "./scss/App.scss"
@@ -20,6 +19,9 @@ import Carusels from './pages/Carusels';
 import Locations from './pages/Locations';
 
 // Create a router object, which is an object that contains all the routes
+// The router object is used to render the components, acording to the url
+// createBrowserRouter is a function that takes an array of objects, each object is a route
+// this is standard router from react-router-dom
 const router = createBrowserRouter([
     {   path: "contact",
         element: <Contact />,
@@ -56,6 +58,8 @@ const router = createBrowserRouter([
 ]);
 
 // The App component is the root component of the application
+// It contains the router provider, which is used to render the routes,
+// RouterProvider is a component from react-router-dom, it takes the router object as a prop
 function App() {
     return (
         <div className='app'>
