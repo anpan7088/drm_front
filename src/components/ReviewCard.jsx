@@ -1,6 +1,6 @@
 // src/components/ReviewCard.jsx
 import React, { useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Stars from './Stars';
 import EditReview from './EditReview';
@@ -25,26 +25,28 @@ const ReviewCard = ({ review, userName, userRole, onDelete, onEdit }) => {
             <Card.Body className='text-left'>
                 <p>{review.comment}</p>
                 <small>{review.username} - {review.fullName}</small>
-                <Stars rating={review.rating} label='Rating' />
-                <Stars rating={review.room_rating} label='Room rating' />
-                <Stars rating={review.location_rating} label='Location rating' />
-                <Stars rating={review.bathroom_rating} label='Bathroom rating' />
+                <Container className="d-flex flex-wrap  justify-content-between">
+                    <Stars rating={review.rating} label='Rating' />
+                    <Stars rating={review.room_rating} label='Room rating' />
+                    <Stars rating={review.location_rating} label='Location rating' />
+                    <Stars rating={review.bathroom_rating} label='Bathroom rating' />
+                </Container>
             </Card.Body>
             <Card.Footer className="d-flex justify-content-end">
-                {(userName === review.username || userRole === 'admin')  && 
-                    <>
+                {(userName === review.username || userRole === 'admin') && // only show delete and edit button for the user who wrote the review or admin
                         <Button variant="danger" onClick={onDelete}>
                             Delete
                         </Button>
+                }
+                {userName === review.username &&  // only show edit button for the user who wrote the review
                         <Button variant="primary" className="ms-1" onClick={() => handleEdit(review.id)}>
                             Edit
                         </Button>
-                    </>
                 }
             </Card.Footer>
-            { editingId && (
+            {editingId &&  // only show edit review component when editing the review
                 <EditReview reviewId={editingId} onClose={() => setEditingId(null)} />
-            )}
+            }
         </Card>
     );
 };

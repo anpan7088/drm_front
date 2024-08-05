@@ -47,7 +47,7 @@ const DormReviews = ({ dormID, refresh }) => {
                     userName={userName}
                     userRole={userRole}
                     onDelete={() => handleDelete(review.id)}
-                    onEdit={fetchReviews()} // refresh the reviews after editing, sunction is called after editing
+                    onEdit={() => fetchReviews()} // refresh the reviews after editing, sunction is called after editing
                 />
             ))}
         </ListGroup>
