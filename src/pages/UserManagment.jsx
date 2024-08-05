@@ -41,12 +41,6 @@ const UserManagment = () => {
         }
     };
 
-    // edit user 
-    const editUser = async (userId) => {
-        // navigate to the edit user page
-        // 
-    };
-
     return (
         <Container>
             <h1>User Managment</h1>
@@ -60,6 +54,7 @@ const UserManagment = () => {
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Role</th>
+                        <th className='text-end'>Reviews</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,12 +66,8 @@ const UserManagment = () => {
                             <td>{user.lastName}</td>
                             <td>{user.email}</td>
                             <td>{user.role}</td>
-                            <td>
-                                <Button onClick={() => editUser(user.id)}>
-                                    Edit
-                                </Button>
-                            </td>
-                            <td>
+                            <td className='text-end'>{user.review_count}</td>
+                            <td className='text-center'>
                                 <Button variant="danger" onClick={() => deleteUser(user.id)}>
                                     Delete
                                 </Button>
