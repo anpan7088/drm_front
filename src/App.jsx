@@ -17,6 +17,7 @@ import DormPage from "./pages/DormPage";
 import Footer from "./components/Footer";
 import Carusels from './pages/Carusels';
 import Locations from './pages/Locations';
+import UserManagment from "./pages/UserManagment";
 
 // Create a router object, which is an object that contains all the routes
 // The router object is used to render the components, acording to the url
@@ -42,6 +43,9 @@ const router = createBrowserRouter([
     {   path: "reviews",
         element: <DormReviewManagement />,
     },
+    {   path: "users",
+        element: <UserManagment />,
+    },
     {   path: "dorm/:dormID",
         element : <DormPage />,
     },
@@ -54,7 +58,7 @@ const router = createBrowserRouter([
     {   path: "*",
         element: <Home />,
     },
-    
+
 ]);
 
 // The App component is the root component of the application

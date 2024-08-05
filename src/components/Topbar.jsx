@@ -29,6 +29,7 @@ const Topbar = () => {
                                 <NavDropdown title="Admin" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="/dorms">Dorm admin</NavDropdown.Item>
                                     <NavDropdown.Item href="/reviews">Review admin</NavDropdown.Item>
+                                    <NavDropdown.Item href="/users">Users admin</NavDropdown.Item>
                                 </NavDropdown>
                             )}
                         </Nav>
