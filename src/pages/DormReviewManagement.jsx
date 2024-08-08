@@ -37,15 +37,17 @@ const DormReviewManagement = () => {
 
     // Fetch reviews from the backend
     // this function is called in the useEffect hook, and it is called every time the component is rendered
-    const fetchReviews = async () => {
+    const fetchReviews = async (userId = '', dormId = '') => {
         try {
-            const response = await axiosInstance.get('/reviews'); // get all reviews for dom reviews
+            const response = await axiosInstance.get('/reviews', {
+                params: { user_id: userId, dorm_id: dormId }
+            });
             setReviews(response.data);
         } catch (error) {
             setAlert({ message: 'Error fetching reviews', variant: 'danger' });
         }
     };
-
+    
     // Fetch users from the backend
     const fetchUsers = async () => {
         try {
