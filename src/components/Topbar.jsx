@@ -25,27 +25,36 @@ const Topbar = () => {
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/carusels">Carusels</Nav.Link>
                             <Nav.Link href="/locations">Locations</Nav.Link>
-                            {userRole === 'admin' && (
-                                <NavDropdown title="Admin" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="/dorms">Dorm admin</NavDropdown.Item>
-                                    <NavDropdown.Item href="/reviews">Review admin</NavDropdown.Item>
-                                    <NavDropdown.Item href="/users">Users admin</NavDropdown.Item>
-                                </NavDropdown>
-                            )}
                         </Nav>
                         <Nav className="ml-auto">
                             <NavDropdown title={userName || "Login"} id="user-dropdown">
+
                                 {userName && (
                                     <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>)}
                                 <NavDropdown.Divider />
+
                                 {!userName && (
                                     <NavDropdown.Item href="/register">Register</NavDropdown.Item>)}
+
                                 {!userName && (
                                     <NavDropdown.Item onClick={showLogin}>Login</NavDropdown.Item>)}
+
                                 {userName && (
                                     <NavDropdown.Item href="#" onClick={() => setShowLogoutPopUp(true)}>Logout</NavDropdown.Item>)}
+
                                 <NavDropdown.Divider />
+
+                                {userRole === 'admin' && (
+                                    <>
+                                        <NavDropdown.Item href="/dorms">Dorm admin</NavDropdown.Item>
+                                        <NavDropdown.Item href="/reviews">Review admin</NavDropdown.Item>
+                                        <NavDropdown.Item href="/users">Users admin</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                    </>
+                                )}
+
                                 <NavDropdown.Item href="/about">About</NavDropdown.Item>
+
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
