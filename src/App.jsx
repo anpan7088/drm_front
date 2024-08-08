@@ -18,6 +18,7 @@ import Footer from "./components/Footer";
 import Carusels from './pages/Carusels';
 import Locations from './pages/Locations';
 import UserManagment from "./pages/UserManagment";
+import useAutoHideFooter from "./hooks/useAutoHideFooter";
 
 // Create a router object, which is an object that contains all the routes
 // The router object is used to render the components, acording to the url
@@ -65,6 +66,9 @@ const router = createBrowserRouter([
 // It contains the router provider, which is used to render the routes,
 // RouterProvider is a component from react-router-dom, it takes the router object as a prop
 function App() {
+    useAutoHideFooter(); // Call the hook to automatically hide the footer
+    
+    // The App component returns the router provider, which is used to render the routes
     return (
         <div className='app'>
             <Topbar />

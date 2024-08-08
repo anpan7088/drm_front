@@ -103,9 +103,7 @@ const Locations = () => {
                         </APIProvider>
                     </div>
                 </div>
-                {hoveredDorm && (
-                    <DormCardHover dorm={hoveredDorm} />
-                )}
+                <DormCardHover dorm={hoveredDorm}  />
             </div>
         </div>
     );

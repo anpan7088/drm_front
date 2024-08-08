@@ -1,5 +1,5 @@
 // src/components/DormCardHover.jsx
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import useMousePosition from '../hooks/useMousePosition';
@@ -13,8 +13,9 @@ const DormCardHover = ({ dorm }) => {
     // starting position with negative values to avoid flickering at the start
     const mouseCord = useMousePosition({ x: -1000, y: -1000 });
     const winSize = useWindowSize();  // window size used to avoid to card popup over the window
-    const [ cordX, setCordX ] = useState( mouseCord.x);
-    const [ cordY, setCordY ] = useState( mouseCord.y);
+
+    const [cordX, setCordX] = useState(mouseCord.x);
+    const [cordY, setCordY] = useState(mouseCord.y);
 
     // function to update the card size on window resize
     const updateSize = () => {
@@ -26,52 +27,60 @@ const DormCardHover = ({ dorm }) => {
             });
         }
     }
+    // useEffect to update the card size 
+    useEffect(() => {
+        updateSize();
+    }, []); // empty array means that this effect will only run once on mount
 
-    // useMemo to update the card position on mouse move
-    // this is called every time the mouse moves
-    // useMemo bether than useEffect in this case, I supose is better :)
-    useMemo(() => {
-        updateSize();  // update size before setin cordinates of the popup
-        setCordX(mouseCord.x);
-        setCordY(mouseCord.y);
+    // function to update the card position on mouse move
+    const updatePosition = () => {
+        setCordX(mouseCord.x + 16);
+        setCordY(mouseCord.y + 16);
         if ((mouseCord.x + cardSize.width) > winSize.width) {
-            setCordX( winSize.width - cardSize.width);
+            setCordX(winSize.width - cardSize.width);
         };
         if ((mouseCord.y + cardSize.height) > winSize.height) {
             setCordY(winSize.height - cardSize.height);
         };
-    }, [mouseCord]);
+    }
+    // useEffect to update the card size and position
+    useEffect(() => {
+        updatePosition();
+    }, [dorm]);  // dorm is the dependency, so this effect will run when dorm changes
 
-
-    return (
-        <Card ref={cardRef} className="dorm-card-hover"
-            style={{
-                position: 'absolute',
-                top: `${cordY}px`,
-                left: `${cordX}px`,
-                pointerEvents: 'none' // Makes the card non-interactive
-            }}
-        >
-            <Card.Img className="card-img"
-                variant="top"
-                src={`${dorm.images[0]}`}
-                alt="Dorm Image"
-            />
-            <Card.Body>
-                <Card.Title>{dorm.name}</Card.Title>
-                <Card.Text>
-                    {dorm.address}
-                    <br />
-                    {dorm.city}
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    );
+    // if dorm is null, return null
+    if (dorm)
+        return (
+            <Card ref={cardRef} className="dorm-card-hover"
+                style={{
+                    position: 'absolute',
+                    top: `${cordY}px`,
+                    left: `${cordX}px`,
+                    pointerEvents: 'none' // Makes the card non-interactive
+                }}
+            >
+                <Card.Img className="card-img"
+                    variant="top"
+                    src={`${dorm.images[0]}`}
+                    alt="Dorm Image"
+                />
+                <Card.Body>
+                    <Card.Title>{dorm.name}</Card.Title>
+                    <Card.Text>
+                        {dorm.address}
+                        <br />
+                        {dorm.city}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        )
+    else
+        return (null);
 };
 
 // Prop types for the component
 DormCardHover.propTypes = {
-    dorm: PropTypes.object.isRequired
+    dorm: PropTypes.object
 };
 
 export default DormCardHover;
