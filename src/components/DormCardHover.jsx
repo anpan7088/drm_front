@@ -49,33 +49,33 @@ const DormCardHover = ({ dorm }) => {
     }, [dorm]);  // dorm is the dependency, so this effect will run when dorm changes
 
     // if dorm is null, return null
-    if (dorm)
-        return (
-            <Card ref={cardRef} className="dorm-card-hover"
-                style={{
-                    position: 'absolute',
-                    top: `${cordY}px`,
-                    left: `${cordX}px`,
-                    pointerEvents: 'none' // Makes the card non-interactive
-                }}
-            >
-                <Card.Img className="card-img"
-                    variant="top"
-                    src={`${dorm.images[0]}`}
-                    alt="Dorm Image"
-                />
-                <Card.Body>
-                    <Card.Title>{dorm.name}</Card.Title>
-                    <Card.Text>
-                        {dorm.address}
-                        <br />
-                        {dorm.city}
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        )
-    else
-        return (null);
+    if (!dorm) return null;
+    
+    // if dorm is not null, return the card
+    return (
+        <Card ref={cardRef} className="dorm-card-hover"
+            style={{
+                position: 'absolute',
+                top: `${cordY}px`,
+                left: `${cordX}px`,
+                pointerEvents: 'none' // Makes the card non-interactive
+            }}
+        >
+            <Card.Img className="card-img"
+                variant="top"
+                src={`${dorm.images[0]}`}
+                alt="Dorm Image"
+            />
+            <Card.Body>
+                <Card.Title>{dorm.name}</Card.Title>
+                <Card.Text>
+                    {dorm.address}
+                    <br />
+                    {dorm.city}
+                </Card.Text>
+            </Card.Body>
+        </Card>
+    )
 };
 
 // Prop types for the component
