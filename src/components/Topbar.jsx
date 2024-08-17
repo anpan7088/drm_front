@@ -25,6 +25,7 @@ const Topbar = () => {
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/carusels">Carusels</Nav.Link>
                             <Nav.Link href="/locations">Locations</Nav.Link>
+                            <Nav.Link href="/about">About</Nav.Link>
                         </Nav>
                         <Nav className="ml-auto">
                             <NavDropdown title={userName || "Login"} id="user-dropdown">
@@ -52,9 +53,6 @@ const Topbar = () => {
                                         <NavDropdown.Divider />
                                     </>
                                 )}
-
-                                <NavDropdown.Item href="/about">About</NavDropdown.Item>
-
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
