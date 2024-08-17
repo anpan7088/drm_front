@@ -29,10 +29,8 @@ const Topbar = () => {
                         </Nav>
                         <Nav className="ml-auto">
                             <NavDropdown title={userName || "Login"} id="user-dropdown">
-
                                 {userName && (
                                     <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>)}
-                                <NavDropdown.Divider />
 
                                 {!userName && (
                                     <NavDropdown.Item href="/register">Register</NavDropdown.Item>)}
@@ -42,8 +40,8 @@ const Topbar = () => {
                                 
                                 {userName && (
                                     <NavDropdown.Item href="#" onClick={() => setShowLogoutPopUp(true)}>Logout</NavDropdown.Item>)}
-                                <NavDropdown.Divider />
-
+                                    
+                                    <NavDropdown.Divider />
                                 {userRole === 'admin' && (
                                     <>
                                         <NavDropdown.Item href="/dorms">Dorm admin</NavDropdown.Item>
