@@ -39,10 +39,9 @@ const Topbar = () => {
 
                                 {!userName && (
                                     <NavDropdown.Item onClick={showLogin}>Login</NavDropdown.Item>)}
-
+                                
                                 {userName && (
                                     <NavDropdown.Item href="#" onClick={() => setShowLogoutPopUp(true)}>Logout</NavDropdown.Item>)}
-
                                 <NavDropdown.Divider />
 
                                 {userRole === 'admin' && (
@@ -50,7 +49,7 @@ const Topbar = () => {
                                         <NavDropdown.Item href="/dorms">Dorm admin</NavDropdown.Item>
                                         <NavDropdown.Item href="/reviews">Review admin</NavDropdown.Item>
                                         <NavDropdown.Item href="/users">Users admin</NavDropdown.Item>
-                                        <NavDropdown.Divider />
+                                        
                                     </>
                                 )}
                             </NavDropdown>
