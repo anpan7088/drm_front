@@ -4,37 +4,6 @@ body {
     height: 100%;
     margin: 0;
 }
-
-.content-container {
-    text-align: center;
-    margin: 50px auto;
-    max-width: 800px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  h3 {
-    font-size: 24px;
-    color: #333;
-  }
-
-  p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #555;
-  }
-#root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.App {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
 /* Half background image section */
 .half-bg-image {
     background-image: url('../assets/dormImage.jpg'); /* Update with correct image path */
@@ -68,6 +37,7 @@ body {
   .homepage-subtitle {
     font-size: 20px;
     margin-bottom: 30px;
+    color: rgb(178, 178, 178)
   }
   
   .homepage-buttons {
@@ -118,6 +88,37 @@ body {
     margin-top: 50px;
   }
   
+.content-container {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  h3 {
+    font-size: 24px;
+    color: #333;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+  }
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 .alert-container {
     position: fixed;
     top: 50%;

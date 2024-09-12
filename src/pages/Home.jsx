@@ -12,7 +12,7 @@ const HomePage = () => {
           <h1 className="homepage-title">Find Your Perfect Dorm</h1>
           <p className="homepage-subtitle">Helping international students feel at home in Slovenia</p>
           <div className="homepage-buttons">
-            <Button variant="outline-light" href="/dorms" className="m-2 btn-lg">
+            <Button variant="outline-light" href="/carusels" className="m-2 btn-lg">
               Dorms
             </Button>
             <Button variant="outline-light" href="/locations" className="m-2 btn-lg">
