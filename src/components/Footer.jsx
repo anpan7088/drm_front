@@ -4,8 +4,8 @@ import { appAbout } from "../../AboutData.json";
 // Footer component, dysplay the footer of the page
 const Footer = () => {
     const { email, author, description, version } = appAbout;
-    
     const mailtoLink = `mailto:${email}`; // Create mailto link
+
     return (
         <footer className="footer">
             <div className="container">
