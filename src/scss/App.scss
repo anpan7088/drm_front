@@ -35,7 +35,89 @@ body {
     flex-direction: column;
     flex: 1;
 }
-
+/* Half background image section */
+.half-bg-image {
+    background-image: url('../assets/dormImage.jpg'); /* Update with correct image path */
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+  
+  .homepage-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .homepage-subtitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .homepage-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Button styling */
+  button.btn-lg {
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  button.btn-lg:hover {
+    background-color: #f8f9fa;
+    color: #000;
+    border-color: #f8f9fa;
+  }
+  
+  /* Message container styling */
+  .message-container {
+    background-color: #f8f9fa;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    margin: 50px auto;
+  }
+  
+  .message-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .message-text {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Additional content section */
+  .mt-5 {
+    margin-top: 50px;
+  }
+  
 .alert-container {
     position: fixed;
     top: 50%;
